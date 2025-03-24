@@ -5,17 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>G'LaPatate</title>
     <script src="./js/script.js" defer></script>
+    <script src="./js/index.js" defer></script>
     <link rel="stylesheet" href="./style/reset.css" />
     <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="./style/index.css" />
   </head>
   <body>
     <header class="header-bar">
       <div id="container-logo">
-        <img
-          src="./assets/img/GLaPatate-detourer.png"
-          alt="logo de g la patate"
-          class="logo"
-        />
+        <a href="./index.html">
+          <img
+            src="./assets/img/GLaPatate-detourer.png"
+            alt="logo de g la patate"
+            class="logo"
+          />
+        </a>
       </div>
       <div id="container-nav">
         <nav id="nav-bar">
@@ -29,8 +33,44 @@
       </div>
     </header>
     <main>
-      <h1 class="title">G'La Patate</h1>
+      <h1 class="title-site">G'La Patate</h1>
       <p class="slogan">Avec nos recettes vous aurez la Patate</p>
+      <input type="text" placeholder="Rechercher" class="search-bar" />
+
+      <section id="container-card">
+        <article class="card starter">
+          <div class="card-container-img">
+            <img
+              src="./assets/img/salade-cesar.jpg"
+              alt=""
+              class="card-image"
+            />
+          </div>
+          <p class="categorie">catégorie</p>
+          <h3 class="card-title">Nom recette</h3>
+          <p class="card-time">temps de prépa :</p>
+        </article>
+        <article class="card dish">
+          <div class="card-container-img">
+            <img
+              src="./assets/img/pate-carbonara.jpg"
+              alt=""
+              class="card-image"
+            />
+          </div>
+          <p class="categorie">catégorie</p>
+          <h3 class="card-title">Nom recette</h3>
+          <p class="card-time">temps de prépa :</p>
+        </article>
+        <article class="card dessert">
+          <div class="card-container-img">
+            <img src="./assets/img/tiramisu.jpg" alt="" class="card-image" />
+          </div>
+          <p class="categorie">catégorie</p>
+          <h3 class="card-title">Nom recette</h3>
+          <p class="card-time">temps de prépa :</p>
+        </article>
+      </section>
     </main>
     <footer><h6 class="copyrigth">&#169; BY Orkblan</h6></footer>
   </body>

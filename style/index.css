@@ -1,0 +1,70 @@
+/*  MAIN */
+main {
+  min-height: 80vh;
+  background-color: rgba(238, 231, 231, 0.589);
+  text-align: center;
+}
+.title-site {
+  padding: 2rem;
+  font-size: 5rem;
+  font-weight: 800;
+}
+.slogan {
+  font-size: 2.5rem;
+  margin: 3rem;
+}
+
+.search-bar {
+  padding: 0.5rem;
+  width: 30%;
+}
+
+/* CARD */
+#container-card {
+  padding: 4rem 0 4rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.card {
+  width: 25%;
+  border: 2px solid grey;
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: start;
+}
+.card-container-img {
+  height: 15rem;
+  width: 85%;
+  margin: 0 auto;
+}
+.card-image {
+  width: 100%;
+  max-height: 100%;
+  border: 2px solid grey;
+}
+.categorie {
+  text-align: end;
+  font-size: 1.3rem;
+  padding: 0.5rem;
+}
+.card-title {
+  font-size: 1.8rem;
+  padding: 0.5rem;
+}
+.card-time {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem;
+}
+.starter {
+  background-color: rgba(135, 243, 180, 0.589);
+}
+.dish {
+  background-color: rgba(235, 123, 123, 0.589);
+}
+.dessert {
+  background-color: rgba(152, 120, 204, 0.589);
+}

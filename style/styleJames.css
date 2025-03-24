@@ -8,3 +8,20 @@
 body {
     background-color: rgb(197, 197, 197);
 }
+
+/* card */
+
+.showBox {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+}
+
+.card-box {
+    background-color: green;
+    min-width: 15rem;
+    padding: 1rem;
+}

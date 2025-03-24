@@ -3,6 +3,7 @@
       {
          "nom":"Poulet rôti aux herbes",
          "categorie":"Plat principal",
+         "image": "poulet-roti-herbe.jpg",
          "temps_preparation":"1 heure",
          "ingredients":[
             {
@@ -33,6 +34,7 @@
       {
          "nom":"Salade de quinoa aux légumes grillés",
          "categorie":"Entrée",
+         "image": "quinoa-legume-grille.jpg",
          "temps_preparation":"30 minutes",
          "ingredients":[
             {
@@ -71,6 +73,7 @@
       {
          "nom":"Tarte aux pommes",
          "categorie":"Dessert",
+         "image": "tarte-pomme.jpg",
          "temps_preparation":"1 heure",
          "ingredients":[
             {
@@ -111,6 +114,7 @@
       {
          "nom":"Soupe de lentilles",
          "categorie":"Entrée",
+         "image": "soupe-lentille.jpg",
          "temps_preparation":"1 heure",
          "ingredients":[
             {
@@ -151,6 +155,7 @@
       {
          "nom":"Pâtes Carbonara",
          "categorie":"Plat principal",
+         "image": "pate-carbonara.jpg",
          "temps_preparation":"20 minutes",
          "ingredients":[
             {
@@ -190,8 +195,9 @@
          ]
       },
       {
-         "nom":"Risotto aux champignons",
+         "nom":"Risotto",
          "categorie":"Plat principal",
+         "image": "risotto.jpg",
          "temps_preparation":"40 minutes",
          "ingredients":[
             {
@@ -235,12 +241,25 @@
       {
          "nom":"Salade de fruits frais",
          "categorie":"Dessert",
+         "image": "salade-fruit.jpg",
          "temps_preparation":"20 minutes",
          "ingredients":[
-            "Fruits variés (fraises, kiwis, oranges, raisins, etc.), coupés en morceaux",
-            "Jus d'orange ou de citron",
-            "Miel ou sirop d'érable (facultatif)",
-            "Feuilles de menthe fraîche pour garnir"
+            {
+               "nom":"Fruits variés (fraises, kiwis, oranges, raisins, etc.), coupés en morceaux",
+               "quantite":"3"
+            },
+            {
+               "nom":"Jus d'orange ou de citron",
+               "quantite":"100g"
+            },
+            {
+               "nom":"Miel ou sirop d'érable (facultatif)",
+               "quantite":"10g"
+            },
+            {
+               "nom":"Feuilles de menthe fraîche pour garnir",
+               "quantite":"4"
+            }
          ],
          "etapes":[
             "Coupez tous les fruits en morceaux de taille similaire et placez-les dans un grand bol.",
@@ -254,6 +273,7 @@
       {
          "nom":"Ratatouille provençale",
          "categorie":"Plat principal",
+         "image": "ratatouille.jpg",
          "temps_preparation":"1 heure",
          "ingredients":[
             {
@@ -295,6 +315,7 @@
       {
          "nom":"Salade César",
          "categorie":"Entrée",
+         "image": "salade-cesar.jpg",
          "temps_preparation":"20 minutes",
          "ingredients":[
             {
@@ -334,6 +355,7 @@
       {
          "nom":"Risotto aux champignons",
          "categorie":"Plat principal",
+         "image": "risotto-champignon.jpg",
          "temps_preparation":"40 minutes",
          "ingredients":[
             {
@@ -377,6 +399,7 @@
       {
          "nom":"Muffins aux myrtilles",
          "categorie":"Dessert",
+         "image": "muffin-myrtille.jpg",
          "temps_preparation":"30 minutes",
          "ingredients":[
             {
@@ -418,6 +441,7 @@
       {
          "nom":"Lasagnes végétariennes",
          "categorie":"Plat principal",
+         "image": "lasagne-vege.jpg",
          "temps_preparation":"1 heure 30 minutes",
          "ingredients":[
             {
@@ -460,6 +484,7 @@
       {
          "nom":"Salade niçoise",
          "categorie":"Entrée",
+         "image": "salade-nicoise.jpg",
          "temps_preparation":"20 minutes",
          "ingredients":[
             {
@@ -503,6 +528,7 @@
       {
          "nom":"Tiramisu",
          "categorie":"Dessert",
+         "image": "tiramisu.jpg",
          "temps_preparation":"30 minutes (+ temps de repos)",
          "ingredients":[
             {

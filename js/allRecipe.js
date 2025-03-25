@@ -1,14 +1,4 @@
 allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
-let numRecipe = allRecipe.length;
-let num1 = Math.floor(Math.random() * (numRecipe - 1 + 1) + 1);
-console.log(num1);
-
-let num2 = Math.floor(Math.random() * (numRecipe - 1 + 1) + 1);
-console.log(num2);
-
-let num3 = Math.floor(Math.random() * (numRecipe - 1 + 1) + 1);
-console.log(num3);
-
 for (const recipe of allRecipe) {
   let card = $("<article></article>").attr({ class: "card" });
   // ajout de condition pour la catégorie
@@ -24,7 +14,7 @@ for (const recipe of allRecipe) {
     class: "card-container-img",
   });
   let cardImg = $("<img/>").attr({
-    src: `./assets/img/${recipe.image}`,
+    src: `../assets/img/${recipe.image}`,
     alt: `${recipe.nom}`,
     class: "card-image",
   });
@@ -42,13 +32,11 @@ for (const recipe of allRecipe) {
     .attr({ class: "card-time" });
   let cardFaceBack = $("<div></div>").attr({ class: "card-face card-back" });
   // gérer le tableau des ingrédient
-  let ingredientList = [];
+  let cardIngredient = $("<p></p>").text(`ingredient : `).attr({});
   for (const ingredient of recipe.ingredients) {
-    ingredientList.push(ingredient.nom);
+    let oneIngredient = $("<span></span>").text(` ${ingredient.nom}, `);
+    cardIngredient.append(oneIngredient);
   }
-  let cardIngredient = $("<p></p>")
-    .text(`ingredient : ${ingredientList}`)
-    .attr({});
   // gestion des étapes de préparation
   //
   let cardPreparing = $("<div></div>").text("Préparation :").attr({});

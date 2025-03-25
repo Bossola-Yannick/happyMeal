@@ -1,9 +1,13 @@
+body {
+  background-color: rgba(238, 231, 231, 0.589);
+}
 /* HEADER */
 .header-bar {
-  max-height: 10em;
+  max-height: 5em;
   display: flex;
   background-color: rgba(230, 224, 224, 0.74);
   padding: 0.5rem;
+  margin-bottom: 2rem;
 }
 .logo {
   max-height: 100%;

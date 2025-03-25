@@ -21,11 +21,33 @@ body {
     gap: 1.6rem;
 }
 
+#card-button {
+    text-align: right;
+}
+
+.button-fav-remove {
+    width: 2rem; 
+    height: 2rem;
+    background-color: transparent;
+    background-image: url(../assets/img/icon-fav.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s all ease-in-out;
+    background-image: url(../assets/img/icon-fav.png);
+}
+
+.button-fav-remove:hover {
+    background-image: url(../assets/img/icon-pasFavoris.png);
+}
+
 .card-box {
     background-color: rgb(82, 82, 82);
     color: white;
     min-width: 15rem;
     padding: 1rem;
+    cursor: pointer;
 }
 
 #card-desc {
@@ -33,6 +55,7 @@ body {
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
+
 
 /* modal style */
 
@@ -43,8 +66,8 @@ body {
     width: 100vw ;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(1px)
-    /* display: none; */
+    backdrop-filter: blur(1px);
+    display: none;
 }
 
 .modal {
@@ -59,12 +82,14 @@ body {
     padding: 1.8rem 0.2rem;
     box-shadow: rgba(99,99,99, 0.2) 0px 2px 8px 0px;
     border-radius: 5px;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     gap: 1.2rem;
     overflow: auto;
+    transition: 0.3s all ease-in-out;
+    display: none;
 }
 
 .scroller {
@@ -79,7 +104,7 @@ body {
     top: 8px;
     right: 8px;
     cursor: pointer;
-    transition: 0.5s all ease-in-out;
+    transition: 0.3s all ease-in-out;
 }
 
 .modal-close img {

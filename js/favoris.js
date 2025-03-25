@@ -2,9 +2,17 @@
 
 // let allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
 // console.log(allRecipe);
-// let recettesFavorites = allRecipe.slice(3, 8);
-let recettesFavorites = [];
-console.log(recettesFavorites);
+let favoritesRecipes;
+if (localStorage.getItem("favorites")) {
+  favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
+} else {
+  favoritesRecipes = allRecipe.slice(3, 8);
+  localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));
+}
+// let favoritesRecipes = allRecipe;
+// let favoritesRecipes = [];
+
+console.log(favoritesRecipes);
 
 // VARIABLE
 let listeCat = [];
@@ -22,52 +30,93 @@ if (selectCategorie) {
     selectCategorie.appendChild(option);
   });
 }
-const cardBox = document.getElementById("listeFav");
+const listFavBox = document.getElementById("listeFav");
 
-console.log(cardBox);
+console.log(listFavBox);
 
-const afficheListeFav = () => {
-  let listeFav = {
+// affiche la modale
+const showModal = () => {};
+
+// affiche la liste des recipes favorites
+const showListFav = () => {
+  let listFav = {
     favorites: [],
   };
 
-  if (recettesFavorites) {
-    recettesFavorites.forEach((recette) => {
-      recette.ingredients = recette.ingredients.map((ingredient) => {
-        if (ingredient.nom.includes("(")) {
+  if (favoritesRecipes) {
+    favoritesRecipes.forEach((recipe) => {
+      recipe.ingredients = recipe.ingredients.map((ingredient) => {
+        if (ingredient.nom && ingredient.nom.includes("(")) {
           return (ingredient = ingredient.nom.split("(")[0]);
-        } else {
+        } else if (ingredient.nom) {
           return (ingredient = ingredient.nom);
+        } else {
+          return ingredient;
         }
       });
-      listeFav.favorites.push(recette);
+      listFav.favorites.push(recipe);
     });
   }
 
+  // console.log(listFav);
+
+  const openModal = () => {
+    document.getElementById("modal").style.display = "flex";
+    document.getElementById("overlay").style.display = "block";
+  };
+
   // affichage liste
-  if (listeFav.favorites.length > 0) {
-    cardBox.innerHTML = "";
+  if (listFav.favorites.length > 0) {
+    listFavBox.innerHTML = "";
 
-    listeFav.favorites.forEach((recette) => {
-      const indexRecette = listeFav.favorites.indexOf(recette);
+    listFav.favorites.forEach((recipe) => {
+      const indexRecipe = listFav.favorites.indexOf(recipe);
 
-      // boite de chaque recette
+      // boite recette
+      const secondCard = document.createElement("div");
+      secondCard.id = "top-box-card";
+      // ajoute le bouton retirer favoris
+      const cardButton = document.createElement("div");
+      cardButton.id = "card-button";
+      const buttonFav = document.createElement("button");
+      buttonFav.id = "remove";
+      buttonFav.classList.add("button-fav-remove");
+      buttonFav.setAttribute("value", indexRecipe);
+      // buttonFav.innerHTML = "Retirer des favoris";
+
+      buttonFav.addEventListener("click", () => {
+        favoritesRecipes.splice(indexRecipe, 1);
+        showListFav();
+        localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));
+        console.log(favoritesRecipes);
+        console.log(listFav);
+      });
+
+      cardButton.appendChild(buttonFav);
+      secondCard.appendChild(cardButton);
+
+      // sous boite de chaque recette
       const card = document.createElement("div");
+      card.id = "card-box";
       card.classList.add("card-box");
+      card.setAttribute("value", indexRecipe);
+      card.addEventListener("click", () => {
+        openModal();
+      });
 
       // ajoute le titre et la catégorie
       const cardTitle = document.createElement("div");
       cardTitle.id = "card-title";
       cardTitle.innerHTML = `
-          <h3>${recette.nom}</h3>
-          <p>${recette.categorie}</p>
+          <h3>${recipe.nom}</h3>
+          <p>${recipe.categorie}</p>
         `;
       card.appendChild(cardTitle);
 
       // boite pour les ingrédients
       const cardDesc = document.createElement("div");
       cardDesc.id = "card-desc";
-      recette.ingredients.forEach((ingredient) => {
+      recipe.ingredients.forEach((ingredient) => {
         const pIngredient = document.createElement("p");
         pIngredient.classList.add("tag-ingredient");
         pIngredient.textContent = ingredient;
@@ -78,26 +127,18 @@ const afficheListeFav = () => {
       // Ajoute le footer
       const cardFooter = document.createElement("div");
       cardFooter.id = "card-footer";
-      cardFooter.innerHTML = `<p>${recette.temps_preparation}</p>`;
+      cardFooter.innerHTML = `<p>${recipe.temps_preparation}</p>`;
       card.appendChild(cardFooter);
-      // ajoute le bouton retirer favoris
-      const cardButton = document.createElement("div");
-      cardButton.id = "card-button";
-      const buttonFav = document.createElement("button");
-      buttonFav.id = "remove";
-      buttonFav.setAttribute("value", indexRecette);
-      buttonFav.textContent = "Retirer des favoris";
-      cardButton.appendChild(buttonFav);
-      cardFooter.appendChild(cardButton);
 
       // Ajoute la carte au conteneur principal
-      cardBox.appendChild(card);
+      secondCard.appendChild(card);
+      listFavBox.appendChild(secondCard);
     });
   } else {
-    cardBox.innerHTML = `
+    listFavBox.innerHTML = `
     <p class="msg-info">Liste vide</p>
     `;
   }
 };
 
-afficheListeFav();
+showListFav();

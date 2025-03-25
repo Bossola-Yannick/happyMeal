@@ -22,6 +22,7 @@ body {
 }
 
 #card-button {
+    background-color: rgb(82, 82, 82);
     text-align: right;
 }
 
@@ -46,7 +47,7 @@ body {
     background-color: rgb(82, 82, 82);
     color: white;
     min-width: 15rem;
-    padding: 1rem;
+    padding: 0 1rem 1rem;
     cursor: pointer;
 }
 

@@ -2,7 +2,8 @@
 
 // let allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
 // console.log(allRecipe);
-let recettesFavorites = allRecipe.slice(3, 8);
+// let recettesFavorites = allRecipe.slice(3, 8);
+let recettesFavorites = [];
 console.log(recettesFavorites);
 
 // VARIABLE
@@ -32,9 +33,13 @@ const afficheListeFav = () => {
 
   if (recettesFavorites) {
     recettesFavorites.forEach((recette) => {
-      recette.ingredients = recette.ingredients.map(
-        (ingredient) => ingredient.nom
-      );
+      recette.ingredients = recette.ingredients.map((ingredient) => {
+        if (ingredient.nom.includes("(")) {
+          return (ingredient = ingredient.nom.split("(")[0]);
+        } else {
+          return (ingredient = ingredient.nom);
+        }
+      });
       listeFav.favorites.push(recette);
     });
   }
@@ -42,7 +47,10 @@ const afficheListeFav = () => {
   // affichage liste
   if (listeFav.favorites.length > 0) {
     cardBox.innerHTML = "";
+
     listeFav.favorites.forEach((recette) => {
+      const indexRecette = listeFav.favorites.indexOf(recette);
+
       // boite de chaque recette
       const card = document.createElement("div");
       card.classList.add("card-box");
@@ -61,6 +69,7 @@ const afficheListeFav = () => {
       cardDesc.id = "card-desc";
       recette.ingredients.forEach((ingredient) => {
         const pIngredient = document.createElement("p");
+        pIngredient.classList.add("tag-ingredient");
         pIngredient.textContent = ingredient;
         cardDesc.appendChild(pIngredient);
       });
@@ -71,6 +80,15 @@ const afficheListeFav = () => {
       cardFooter.id = "card-footer";
       cardFooter.innerHTML = `<p>${recette.temps_preparation}</p>`;
       card.appendChild(cardFooter);
+      // ajoute le bouton retirer favoris
+      const cardButton = document.createElement("div");
+      cardButton.id = "card-button";
+      const buttonFav = document.createElement("button");
+      buttonFav.id = "remove";
+      buttonFav.setAttribute("value", indexRecette);
+      buttonFav.textContent = "Retirer des favoris";
+      cardButton.appendChild(buttonFav);
+      cardFooter.appendChild(cardButton);
 
       // Ajoute la carte au conteneur principal
       cardBox.appendChild(card);

@@ -83,14 +83,20 @@ body {
     padding: 1.8rem 0.2rem;
     box-shadow: rgba(99,99,99, 0.2) 0px 2px 8px 0px;
     border-radius: 5px;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     gap: 1.2rem;
     overflow: auto;
     transition: 0.3s all ease-in-out;
-    /* display: none; */
+    display: none;
+}
+
+.modal-visible {
+    display: block;
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1); 
 }
 
 .scroller {
@@ -109,8 +115,8 @@ body {
 }
 
 .modal-close img {
-    width: 1rem;
-    height: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .modal-close:hover {

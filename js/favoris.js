@@ -32,7 +32,25 @@ if (selectCategorie) {
 }
 const listFavBox = document.getElementById("listeFav");
 
-// rempli la modale avec les infos de la recette selectionnée
+// affiche la modale
+const openModal = () => {
+  const overlay = document.getElementById("overlay");
+  const modal = document.getElementById("modal");
+
+  overlay.style.display = "block";
+  modal.style.display = "flex";
+};
+
+// ferme la modale
+const closeModal = () => {
+  const overlay = document.getElementById("overlay");
+  const modal = document.getElementById("modal");
+
+  overlay.style.display = "none";
+  modal.style.display = "none";
+};
+
+// creer la modale avec les infos de la recette selectionnée
 const createModal = () => {
   const indexRecipeClicked = localStorage.getItem("id-clicked-recipe");
   const recipeClicked = favoritesRecipes[indexRecipeClicked];
@@ -51,6 +69,7 @@ const createModal = () => {
   const modalCloseIcon = document.createElement("img");
   modalCloseIcon.setAttribute("src", "../assets/img/icon-close.png");
   modalClose.appendChild(modalCloseIcon);
+  modalCloseIcon.addEventListener("click", closeModal);
 
   // boite modale header
   const modalHeader = document.createElement("div");
@@ -124,6 +143,7 @@ const createModal = () => {
   modalBox.appendChild(modalSubHeader);
   modalBox.appendChild(modalBody);
   modalBox.appendChild(modalCookingStepsList);
+  document.body.appendChild(modalBox);
   console.log(modalBox);
 };
 
@@ -227,16 +247,4 @@ const showListFav = () => {
 };
 
 showListFav();
-
-// affiche la modale
-const openModal = () => {
-  createModal();
-  document.getElementById("overlay").style.display = "block";
-  console.log("coucou");
-};
-
-// ferme la modale
-const closeModal = () => {
-  document.getElementById("modal").style.display = "none";
-  document.getElementById("overlay").style.display = "none";
-};
+createModal();

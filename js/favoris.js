@@ -14,22 +14,31 @@ if (localStorage.getItem("favorite") !== null) {
 console.log(favoritesRecipes);
 
 // VARIABLE
-let listeCat = [];
+let listCategory = [];
 allRecipe.forEach((recipe) => {
-  listeCat.push(recipe.categorie);
-  listeCat = Array.from(new Set(listeCat));
+  listCategory.push(recipe.categorie);
+  listCategory = Array.from(new Set(listCategory));
 });
+const dayOfWeek = [
+  "lundi",
+  "mardi",
+  "mercredi",
+  "jeudi",
+  "vendredi",
+  "samedi",
+  "dimanche",
+];
 
 // ELEMENTS:
+const listFavBox = document.getElementById("listeFav");
 const selectCategorie = document.getElementById("categorie");
 if (selectCategorie) {
-  listeCat.forEach((type) => {
+  listCategory.forEach((type) => {
     let option = document.createElement("option");
     option.textContent = type;
     selectCategorie.appendChild(option);
   });
 }
-const listFavBox = document.getElementById("listeFav");
 
 // affiche la modale
 const openModal = () => {
@@ -50,146 +59,64 @@ const closeModal = () => {
 };
 
 // creer la modale avec les infos de la recette selectionnée
-// const createModal = () => {
-//   const indexRecipeClicked = localStorage.getItem("id-clicked-recipe");
-//   const recipeClicked = favoritesRecipes[indexRecipeClicked];
-//   // console.log(recipeClicked);
 
-//   // boite modale
-//   const modalBox = document.createElement("div");
-//   modalBox.id = "modal";
-//   modalBox.classList.add("modal", "scroller");
+const createModal = (index) => {
+  const modalBox = document.getElementById("modal");
+  modalBox.innerHTML = "";
 
-//   // boite modale close
-// const modalClose = document.createElement("div");
-// modalClose.id = "modal-close";
-// modalClose.classList.add("modal-close");
+  // const recipeChoose = localStorage.getItem("favorite");
+  // console.log(recipeChoose);
 
-// const modalCloseIcon = document.createElement("img");
-// modalCloseIcon.setAttribute("src", "../assets/img/icon-close.png");
-// modalClose.appendChild(modalCloseIcon);
-// modalCloseIcon.addEventListener("click", closeModal);
+  favoritesRecipes.forEach((recette) => {
+    if (favoritesRecipes.indexOf(recette) === index) {
+      console.log(recette);
+      modalBox.innerHTML += `
+        <div class="modal-header">
+          <h2>${recette.nom}</h2>
+          <p>Préparation: ${recette.temps_preparation}</p>
+        </div>
+        <div id="modal-close" class="modal-close">
+          <img id="modal-icon-close" src="../assets/img/icon-close.png" />
+        </div>
+         <div class="modal-sub-header">
+          <h5>Ajouter aux menus de la semaine?</h5>
+          <select id="dayOfWeekSelect">
+            <option>--choisir un jour de la semaine--</option>
+            ${dayOfWeek
+              .map((day) => `<option value="${day}">${day}</option>`)
+              .join("")}
+          </select>
+        </div>
+        <div class="modal-body">
+          <ul class="ingredients">
+            ${recette.ingredients
+              .map(
+                (ingredient) =>
+                  `<li>${ingredient.nom}: <span>${ingredient.quantite}</span> </li>`
+              )
+              .join("")}
+          </ul>
+          <div class="cooking-steps">
+            <h3>Etapes de préparations</h3>
+            <ol>
+            ${recette.etapes.map((etape) => `<li>${etape}</li>`).join("")}
+            </ol>
+          </div>
+        </div>
+      `;
+    }
+  });
 
-//   // boite modale header
-//   const modalHeader = document.createElement("div");
-//   modalHeader.classList.add("modal-header");
-
-//   const modalH2 = document.createElement("h2");
-//   modalH2.innerText = "{recette}";
-
-//   const modalP1 = document.createElement("p");
-//   modalP1.innerText = "{temps preparation}";
-
-//   modalHeader.appendChild(modalH2);
-//   modalHeader.appendChild(modalP1);
-
-//   // boite modale sub header
-//   const modalSubHeader = document.createElement("div");
-//   modalSubHeader.classList.add("modal-sub-header");
-
-//   const modalSubHeaderH5 = document.createElement("h5");
-//   modalSubHeaderH5.innerText = "Ajouter aux menus de la semaine ?";
-
-//   const modalSubHeaderSelect = document.createElement("select");
-//   const modalSelectEx = document.createElement("option");
-//   modalSelectEx.innerText = "--Choisir un jour de la semaine--";
-//   modalSubHeaderSelect.appendChild(modalSelectEx);
-//   const jourSemaine = [
-//     "lundi",
-//     "mardi",
-//     "mercredi",
-//     "jeudi",
-//     "vendredi",
-//     "samedi",
-//     "dimanche",
-//   ];
-//   jourSemaine.forEach((jour) => {
-//     const modalSelectOption = document.createElement("option");
-//     modalSelectOption.innerText = jour;
-//     modalSubHeaderSelect.appendChild(modalSelectOption);
-//   });
-
-//   modalSubHeader.appendChild(modalSubHeaderH5);
-//   modalSubHeader.appendChild(modalSubHeaderSelect);
-
-//   // boite modale body
-//   const modalBody = document.createElement("div");
-//   modalBody.classList.add("modal-body");
-
-//   const modalListIngredients = document.createElement("ul");
-//   modalListIngredients.classList.add("ingredients");
-//   modalBody.appendChild(modalListIngredients);
-
-//   const modalIngredients = document.createElement("li");
-//   modalIngredients.innerHTML = `(ingredient nom) <span>(quantite)</span>`;
-//   modalListIngredients.appendChild(modalIngredients);
-
-//   const modalCookingStepsList = document.createElement("div");
-//   modalCookingStepsList.classList.add("cooking-steps");
-
-//   const modalCookingH3 = document.createElement("h3");
-//   modalCookingH3.innerText = "Etapes";
-//   modalCookingStepsList.appendChild(modalCookingH3);
-//   const modalCookingOl = document.createElement("ol");
-//   const modalCookingLi = document.createElement("li");
-//   modalCookingLi.innerText = "etapes X";
-//   modalCookingOl.appendChild(modalCookingLi);
-//   modalCookingStepsList.appendChild(modalCookingOl);
-
-//   // append toutes les boites dans modale box
-//   modalBox.appendChild(modalClose);
-//   modalBox.appendChild(modalHeader);
-//   modalBox.appendChild(modalSubHeader);
-//   modalBox.appendChild(modalBody);
-//   modalBox.appendChild(modalCookingStepsList);
-//   document.body.appendChild(modalBox);
-//   console.log(modalBox);
-// };
-
-// const createModal = (index) => {
-//   const modalBox = document.getElementById("modal");
-
-//   // const recipeChoose = localStorage.getItem("favorite");
-//   // console.log(recipeChoose);
-
-//   const modalClose = document.createElement("div");
-//   modalClose.id = "modal-close";
-//   modalClose.classList.add("modal-close");
-
-//   const modalCloseIcon = document.createElement("img");
-//   modalCloseIcon.setAttribute("src", "../assets/img/icon-close.png");
-//   modalClose.appendChild(modalCloseIcon);
-//   modalCloseIcon.addEventListener("click", closeModal);
-//   modalBox.appendChild(modalClose);
-
-//   favoritesRecipes.forEach((recette) => {
-//     if (favoritesRecipes.indexOf(recette) === index) {
-//       console.log(recette.nom);
-//       modalBox.innerHTML += `
-//         <div class="modal-header">
-//           <h2>${recette.nom}</h2>
-//           <p>${recette.temps_preparation}</p>
-//         </div>
-//         <div class="modal-body">
-//           <ul class="ingredients">
-//             ${recette.ingredients.map((ingredient) => `<li>${ingredient}</li>`)}
-//           </ul>
-//           <div class="cooking-steps">
-//             <h3>{étapes}</h3>
-//             <ol>
-//               <li>Lorem ipsum dolor sit</li>
-//             </ol>
-//           </div>
-//         </div>
-//       `;
-//     }
-//   });
-// };
+  const modalCloseIcon = document.getElementById("modal-icon-close");
+  modalCloseIcon.addEventListener("click", (e) => {
+    console.log(e);
+    closeModal();
+  });
+};
 
 // createModal(1);
 
 // affiche la liste des recipes favorites
-
 const showListFav = () => {
   // affichage liste
   if (favoritesRecipes.length > 0) {
@@ -209,12 +136,11 @@ const showListFav = () => {
       buttonFav.classList.add("button-fav-remove");
       buttonFav.setAttribute("value", indexRecipe);
 
+      // event pour supprimer des favoris
       buttonFav.addEventListener("click", () => {
         favoritesRecipes.splice(indexRecipe, 1);
-        console.log("coucou");
         showListFav();
         localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));
-        console.log(favoritesRecipes);
       });
 
       cardButton.appendChild(buttonFav);
@@ -225,9 +151,11 @@ const showListFav = () => {
       card.id = "card-box";
       card.classList.add("card-box");
       card.setAttribute("value", indexRecipe);
+
+      // event pour afficher la modale de la recette
       card.addEventListener("click", () => {
-        // localStorage.setItem("id-clicked-recipe", indexRecipe);
-        openModal(indexRecipe);
+        openModal();
+        createModal(indexRecipe);
       });
 
       // ajoute le titre et la catégorie
@@ -268,4 +196,3 @@ const showListFav = () => {
 };
 
 showListFav();
-// createModal();

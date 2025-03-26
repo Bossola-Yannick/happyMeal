@@ -3,7 +3,7 @@
 // let allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
 // console.log(allRecipe);
 let favoritesRecipes;
-if (localStorage.getItem("favorites")) {
+if (!localStorage.getItem("favorites")) {
   favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
 } else {
   favoritesRecipes = allRecipe.slice(3, 8);
@@ -12,7 +12,7 @@ if (localStorage.getItem("favorites")) {
 // let favoritesRecipes = allRecipe;
 // let favoritesRecipes = [];
 
-console.log(favoritesRecipes);
+// console.log(favoritesRecipes);
 
 // VARIABLE
 let listeCat = [];
@@ -32,10 +32,100 @@ if (selectCategorie) {
 }
 const listFavBox = document.getElementById("listeFav");
 
-console.log(listFavBox);
+// rempli la modale avec les infos de la recette selectionnée
+const createModal = () => {
+  const indexRecipeClicked = localStorage.getItem("id-clicked-recipe");
+  const recipeClicked = favoritesRecipes[indexRecipeClicked];
+  // console.log(recipeClicked);
 
-// affiche la modale
-const showModal = () => {};
+  // boite modale
+  const modalBox = document.createElement("div");
+  modalBox.id = "modal";
+  modalBox.classList.add("modal", "scroller");
+
+  // boite modale close
+  const modalClose = document.createElement("div");
+  modalClose.id = "modal-close";
+  modalClose.classList.add("modal-close");
+
+  const modalCloseIcon = document.createElement("img");
+  modalCloseIcon.setAttribute("src", "../assets/img/icon-close.png");
+  modalClose.appendChild(modalCloseIcon);
+
+  // boite modale header
+  const modalHeader = document.createElement("div");
+  modalHeader.classList.add("modal-header");
+
+  const modalH2 = document.createElement("h2");
+  modalH2.innerText = "{recette}";
+
+  const modalP1 = document.createElement("p");
+  modalP1.innerText = "{temps preparation}";
+
+  modalHeader.appendChild(modalH2);
+  modalHeader.appendChild(modalP1);
+
+  // boite modale sub header
+  const modalSubHeader = document.createElement("div");
+  modalSubHeader.classList.add("modal-sub-header");
+
+  const modalSubHeaderH5 = document.createElement("h5");
+  modalSubHeaderH5.innerText = "Ajouter aux menus de la semaine ?";
+
+  const modalSubHeaderSelect = document.createElement("select");
+  const modalSelectEx = document.createElement("option");
+  modalSelectEx.innerText = "--Choisir un jour de la semaine--";
+  modalSubHeaderSelect.appendChild(modalSelectEx);
+  const jourSemaine = [
+    "lundi",
+    "mardi",
+    "mercredi",
+    "jeudi",
+    "vendredi",
+    "samedi",
+    "dimanche",
+  ];
+  jourSemaine.forEach((jour) => {
+    const modalSelectOption = document.createElement("option");
+    modalSelectOption.innerText = jour;
+    modalSubHeaderSelect.appendChild(modalSelectOption);
+  });
+
+  modalSubHeader.appendChild(modalSubHeaderH5);
+  modalSubHeader.appendChild(modalSubHeaderSelect);
+
+  // boite modale body
+  const modalBody = document.createElement("div");
+  modalBody.classList.add("modal-body");
+
+  const modalListIngredients = document.createElement("ul");
+  modalListIngredients.classList.add("ingredients");
+  modalBody.appendChild(modalListIngredients);
+
+  const modalIngredients = document.createElement("li");
+  modalIngredients.innerHTML = `(ingredient nom) <span>(quantite)</span>`;
+  modalListIngredients.appendChild(modalIngredients);
+
+  const modalCookingStepsList = document.createElement("div");
+  modalCookingStepsList.classList.add("cooking-steps");
+
+  const modalCookingH3 = document.createElement("h3");
+  modalCookingH3.innerText = "Etapes";
+  modalCookingStepsList.appendChild(modalCookingH3);
+  const modalCookingOl = document.createElement("ol");
+  const modalCookingLi = document.createElement("li");
+  modalCookingLi.innerText = "etapes X";
+  modalCookingOl.appendChild(modalCookingLi);
+  modalCookingStepsList.appendChild(modalCookingOl);
+
+  // append toutes les boites dans modale box
+  modalBox.appendChild(modalClose);
+  modalBox.appendChild(modalHeader);
+  modalBox.appendChild(modalSubHeader);
+  modalBox.appendChild(modalBody);
+  modalBox.appendChild(modalCookingStepsList);
+  console.log(modalBox);
+};
 
 // affiche la liste des recipes favorites
 const showListFav = () => {
@@ -60,11 +150,6 @@ const showListFav = () => {
 
   // console.log(listFav);
 
-  const openModal = () => {
-    document.getElementById("modal").style.display = "flex";
-    document.getElementById("overlay").style.display = "block";
-  };
-
   // affichage liste
   if (listFav.favorites.length > 0) {
     listFavBox.innerHTML = "";
@@ -82,7 +167,6 @@ const showListFav = () => {
       buttonFav.id = "remove";
       buttonFav.classList.add("button-fav-remove");
       buttonFav.setAttribute("value", indexRecipe);
-      // buttonFav.innerHTML = "Retirer des favoris";
 
       buttonFav.addEventListener("click", () => {
         favoritesRecipes.splice(indexRecipe, 1);
@@ -101,6 +185,7 @@ const showListFav = () => {
       card.classList.add("card-box");
       card.setAttribute("value", indexRecipe);
       card.addEventListener("click", () => {
+        localStorage.setItem("id-clicked-recipe", indexRecipe);
         openModal();
       });
 
@@ -142,3 +227,16 @@ const showListFav = () => {
 };
 
 showListFav();
+
+// affiche la modale
+const openModal = () => {
+  createModal();
+  document.getElementById("overlay").style.display = "block";
+  console.log("coucou");
+};
+
+// ferme la modale
+const closeModal = () => {
+  document.getElementById("modal").style.display = "none";
+  document.getElementById("overlay").style.display = "none";
+};

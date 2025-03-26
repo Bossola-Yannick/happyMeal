@@ -83,14 +83,14 @@ body {
     padding: 1.8rem 0.2rem;
     box-shadow: rgba(99,99,99, 0.2) 0px 2px 8px 0px;
     border-radius: 5px;
-    /* display: flex; */
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     gap: 1.2rem;
     overflow: auto;
     transition: 0.3s all ease-in-out;
-    display: none;
+    /* display: none; */
 }
 
 .scroller {

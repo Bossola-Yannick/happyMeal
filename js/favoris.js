@@ -72,20 +72,11 @@ const createModal = (index) => {
       console.log(recette);
       modalBox.innerHTML += `
         <div class="modal-header">
-          <h2>${recette.nom}</h2>
+          <h1>${recette.nom}</h1>
           <p>Préparation: ${recette.temps_preparation}</p>
         </div>
         <div id="modal-close" class="modal-close">
           <img id="modal-icon-close" src="../assets/img/icon-close.png" />
-        </div>
-         <div class="modal-sub-header">
-          <h5>Ajouter aux menus de la semaine?</h5>
-          <select id="dayOfWeekSelect">
-            <option>--choisir un jour de la semaine--</option>
-            ${dayOfWeek
-              .map((day) => `<option value="${day}">${day}</option>`)
-              .join("")}
-          </select>
         </div>
         <div class="modal-body">
           <ul class="ingredients">
@@ -103,6 +94,15 @@ const createModal = (index) => {
             </ol>
           </div>
         </div>
+         <div class="modal-footer">
+          <h4>Ajouter aux menus de la semaine?</h4>
+          <select id="dayOfWeekSelect">
+            <option>-- choisir un jour --</option>
+            ${dayOfWeek
+              .map((day) => `<option value="${day}">${day}</option>`)
+              .join("")}
+          </select>
+        </div>
       `;
     }
   });
@@ -113,8 +113,6 @@ const createModal = (index) => {
     closeModal();
   });
 };
-
-// createModal(1);
 
 // affiche la liste des recipes favorites
 const showListFav = () => {

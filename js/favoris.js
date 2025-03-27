@@ -11,7 +11,17 @@ if (localStorage.getItem("favorite") !== null) {
   favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
 }
 
-console.log(favoritesRecipes);
+let recipesWeek;
+
+if (localStorage.getItem("recipes-week") !== null) {
+  recipesWeek = JSON.parse(localStorage.getItem("recipes-week"));
+} else {
+  recipesWeek = [];
+  localStorage.setItem("recipes-week", JSON.stringify(recipesWeek));
+  recipesWeek = JSON.parse(localStorage.getItem("recipes-week"));
+}
+
+// console.log(favoritesRecipes);
 
 // VARIABLE
 let listCategory = [];
@@ -62,6 +72,7 @@ const closeModal = () => {
 
 const createModal = (index) => {
   const modalBox = document.getElementById("modal");
+  let recipeModal;
   modalBox.innerHTML = "";
 
   // const recipeChoose = localStorage.getItem("favorite");
@@ -69,7 +80,7 @@ const createModal = (index) => {
 
   favoritesRecipes.forEach((recette) => {
     if (favoritesRecipes.indexOf(recette) === index) {
-      console.log(recette);
+      recipeModal = recette;
       modalBox.innerHTML += `
         <div class="modal-header">
           <h1>${recette.nom}</h1>
@@ -98,13 +109,7 @@ const createModal = (index) => {
           </div>
         </div>
          <div class="modal-footer">
-          <h4>Ajouter aux menus de la semaine?</h4>
-          <select id="dayOfWeekSelect">
-            <option>-- choisir un jour --</option>
-            ${dayOfWeek
-              .map((day) => `<option value="${day}">${day}</option>`)
-              .join("")}
-          </select>
+          <h4>Ajouter aux recettes de la semaine?</h4>
           <button id="add-recipe-day" type="submit" class="button-add">
               <img src="../assets/img/icon-add.png" />
           </button>
@@ -114,11 +119,12 @@ const createModal = (index) => {
     }
   });
 
-  const selectDay = document.getElementById("dayOfWeekSelect");
+  // ajouter un plat favori a un jour de la semaine
   const addRecipeDay = document.getElementById("add-recipe-day");
 
-  selectDay.addEventListener("click", (e) => {
-    console.log(selectDay.value);
+  addRecipeDay.addEventListener("click", () => {
+    recipesWeek.push(recipeModal);
+    localStorage.setItem("recipes-week", JSON.stringify(recipesWeek));
   });
 
   const modalCloseIcon = document.getElementById("modal-icon-close");

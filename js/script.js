@@ -12,6 +12,7 @@ const getJson = async () => {
     console.error("Erreur de chargement: ", error);
   }
 };
+getJson();
 
 // JSON: récupération de toutes les recettes et mise en localStorage
 if (!localStorage.getItem("all-recipe")) {
@@ -24,8 +25,6 @@ if (!localStorage.getItem("all-recipe")) {
   allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
   //   console.log(allRecipe);
 }
-
-getJson();
 
 // mise en place des recettes par catégorie
 for (recipe of allRecipe) {

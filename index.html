@@ -12,6 +12,7 @@
     <script src="./js/script.js"></script>
     <script src="./js/index.js" defer></script>
     <script src="./js/card.js" defer></script>
+    <script src="./js/search.js" defer></script>
     <link rel="stylesheet" href="./style/reset.css" />
     <link rel="stylesheet" href="./style/header-footer.css" />
     <link rel="stylesheet" href="./style/index.css" />
@@ -50,7 +51,15 @@
         />
       </div>
       <p class="slogan">Avec nos recettes vous aurez la Patate</p>
-      <input type="text" placeholder="Rechercher" class="search-bar" />
+      <div class="container-search-bar">
+        <input
+          type="text"
+          placeholder="Rechercher une recette"
+          class="search-bar"
+          id="search"
+        />
+        <div id="resultSearch"></div>
+     
 
       <section id="container-card">
         <!-- Insertion des cartes ICI  -->

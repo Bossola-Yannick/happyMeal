@@ -27,6 +27,7 @@ if (!localStorage.getItem("all-recipe")) {
 
 getJson();
 
+// mise en place des recettes par catégorie
 for (recipe of allRecipe) {
   if (recipe.categorie === "Entrée") {
     starter.push(recipe);

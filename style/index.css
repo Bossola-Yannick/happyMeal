@@ -27,3 +27,14 @@ main {
 .title-img {
   max-width: 100%;
 }
+
+#resultSearch {
+  width: 30%;
+  margin: 0 auto;
+  text-align: start;
+}
+
+#resultSearch p {
+  cursor: pointer;
+  padding: 0.3rem;
+}

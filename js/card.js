@@ -1,3 +1,3 @@
-$(".card").click(function (e) {
+$("body").on("click", ".card", function (e) {
   $(this).toggleClass("flip");
 });

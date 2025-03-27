@@ -35,6 +35,15 @@ allRecipe.forEach((recipe) => {
 const listFavBox = document.getElementById("listeFav");
 const selectCategorie = document.getElementById("categorie");
 
+// compte le nombre de recettes par catégorie
+const countRecipesByCategory = (categorie) => {
+  if (categorie === "Liste entière") {
+    return favoritesRecipes.length;
+  }
+  return favoritesRecipes.filter((recipe) => recipe.categorie === categorie)
+    .length;
+};
+
 // affiche la modale
 const openModal = () => {
   const overlay = document.getElementById("overlay");
@@ -147,7 +156,10 @@ const createModal = (index) => {
 // affiche la liste des recipes favorites
 const showListFav = (categorie) => {
   // affichage liste
-  if (favoritesRecipes.length > 0) {
+  const count = countRecipesByCategory(categorie);
+
+  console.log();
+  if (count > 0 && favoritesRecipes.length > 0) {
     listFavBox.innerHTML = "";
 
     favoritesRecipes.forEach((recipe) => {
@@ -221,18 +233,12 @@ const showListFav = (categorie) => {
     });
   } else {
     listFavBox.innerHTML = `
-    <p class="msg-info">Liste vide</p>
+    <div class="empty-list">
+      <h3 class="msg-info">Oops, on dirait bien que cette liste est vide</h3>
+      <img src="../assets/img/GLaPatate-detourer.png"/>
+    </div>
     `;
   }
-};
-
-// compte le nombre de recettes par catégorie
-const countRecipesByCategory = (categorie) => {
-  if (categorie === "Liste entière") {
-    return favoritesRecipes.length;
-  }
-  return favoritesRecipes.filter((recipe) => recipe.categorie === categorie)
-    .length;
 };
 
 // rempli le select d'option avec le nombre de recette par catégorie

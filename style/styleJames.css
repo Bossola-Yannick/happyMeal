@@ -249,3 +249,10 @@ select:focus {
     width: 2rem;
     aspect-ratio: 1 / 1;
 }
+
+.empty-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}

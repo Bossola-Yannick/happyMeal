@@ -158,7 +158,6 @@ const showListFav = (categorie) => {
   // affichage liste
   const count = countRecipesByCategory(categorie);
 
-  console.log();
   if (count > 0 && favoritesRecipes.length > 0) {
     listFavBox.innerHTML = "";
 
@@ -169,6 +168,14 @@ const showListFav = (categorie) => {
         // boite recette
         const secondCard = document.createElement("div");
         secondCard.id = "top-box-card";
+        //couleur bg cards selon categorie
+        if (recipe.categorie === "Entrée") {
+          secondCard.classList.add("starter");
+        } else if (recipe.categorie === "Plat principal") {
+          secondCard.classList.add("dish");
+        } else if (recipe.categorie === "Dessert") {
+          secondCard.classList.add("dessert");
+        }
         // ajoute le bouton retirer favoris
         const cardButton = document.createElement("div");
         cardButton.id = "card-button";

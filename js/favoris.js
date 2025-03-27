@@ -30,26 +30,10 @@ allRecipe.forEach((recipe) => {
   listCategory.push(recipe.categorie);
   listCategory = Array.from(new Set(listCategory));
 });
-const dayOfWeek = [
-  "lundi",
-  "mardi",
-  "mercredi",
-  "jeudi",
-  "vendredi",
-  "samedi",
-  "dimanche",
-];
 
 // ELEMENTS:
 const listFavBox = document.getElementById("listeFav");
 const selectCategorie = document.getElementById("categorie");
-if (selectCategorie) {
-  listCategory.forEach((type) => {
-    let option = document.createElement("option");
-    option.textContent = type;
-    selectCategorie.appendChild(option);
-  });
-}
 
 // affiche la modale
 const openModal = () => {
@@ -70,7 +54,6 @@ const closeModal = () => {
 };
 
 // creer la modale avec les infos de la recette selectionnée
-
 const createModal = (index) => {
   const modalBox = document.getElementById("modal");
   modalBox.innerHTML = "";
@@ -162,76 +145,79 @@ const createModal = (index) => {
 };
 
 // affiche la liste des recipes favorites
-const showListFav = () => {
+const showListFav = (categorie) => {
   // affichage liste
   if (favoritesRecipes.length > 0) {
     listFavBox.innerHTML = "";
 
     favoritesRecipes.forEach((recipe) => {
-      const indexRecipe = favoritesRecipes.indexOf(recipe);
+      if (categorie === "Liste entière" || recipe.categorie === categorie) {
+        const indexRecipe = favoritesRecipes.indexOf(recipe);
 
-      // boite recette
-      const secondCard = document.createElement("div");
-      secondCard.id = "top-box-card";
-      // ajoute le bouton retirer favoris
-      const cardButton = document.createElement("div");
-      cardButton.id = "card-button";
-      const buttonFav = document.createElement("button");
-      buttonFav.id = "remove";
-      buttonFav.classList.add("button-fav-remove");
-      buttonFav.setAttribute("value", indexRecipe);
+        // boite recette
+        const secondCard = document.createElement("div");
+        secondCard.id = "top-box-card";
+        // ajoute le bouton retirer favoris
+        const cardButton = document.createElement("div");
+        cardButton.id = "card-button";
+        const buttonFav = document.createElement("button");
+        buttonFav.id = "remove";
+        buttonFav.classList.add("button-fav-remove");
+        buttonFav.setAttribute("value", indexRecipe);
 
-      // event pour supprimer des favoris
-      buttonFav.addEventListener("click", () => {
-        favoritesRecipes.splice(indexRecipe, 1);
-        showListFav();
-        localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));
-      });
+        // event pour supprimer des favoris
+        buttonFav.addEventListener("click", () => {
+          favoritesRecipes.splice(indexRecipe, 1);
+          selectOption();
+          showListFav("Liste entière");
+          localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));
+        });
 
-      cardButton.appendChild(buttonFav);
-      secondCard.appendChild(cardButton);
+        cardButton.appendChild(buttonFav);
+        secondCard.appendChild(cardButton);
 
-      // sous boite de chaque recette
-      const card = document.createElement("div");
-      card.id = "card-box";
-      card.classList.add("card-box");
-      card.setAttribute("value", indexRecipe);
+        // sous boite de chaque recette
+        const card = document.createElement("div");
+        card.id = "card-box";
+        card.classList.add("card-box");
+        card.setAttribute("value", indexRecipe);
 
-      // event pour afficher la modale de la recette
-      card.addEventListener("click", () => {
-        openModal();
-        createModal(indexRecipe);
-      });
+        // event pour afficher la modale de la recette
+        card.addEventListener("click", () => {
+          openModal();
+          createModal(indexRecipe);
+        });
 
-      // ajoute le titre et la catégorie
-      const cardTitle = document.createElement("div");
-      cardTitle.id = "card-title";
-      cardTitle.innerHTML = `
+        // ajoute le titre et la catégorie
+        const cardTitle = document.createElement("div");
+        cardTitle.id = "card-title";
+        cardTitle.innerHTML = `
           <h3>${recipe.nom}</h3>
           <p>${recipe.categorie}</p>
         `;
-      card.appendChild(cardTitle);
+        card.appendChild(cardTitle);
 
-      // boite pour les ingrédients
-      const cardDesc = document.createElement("div");
-      cardDesc.id = "card-desc";
-      recipe.ingredients.map((ingredient) => {
-        const pIngredient = document.createElement("p");
-        pIngredient.classList.add("tag-ingredient");
-        pIngredient.textContent = ingredient.nom;
-        cardDesc.appendChild(pIngredient);
-      });
-      card.appendChild(cardDesc);
+        // boite pour les ingrédients
+        const cardDesc = document.createElement("div");
+        cardDesc.id = "card-desc";
+        recipe.ingredients.map((ingredient) => {
+          const pIngredient = document.createElement("p");
+          pIngredient.classList.add("tag-ingredient");
+          pIngredient.textContent = ingredient.nom;
+          cardDesc.appendChild(pIngredient);
+        });
+        card.appendChild(cardDesc);
 
-      // Ajoute le footer
-      const cardFooter = document.createElement("div");
-      cardFooter.id = "card-footer";
-      cardFooter.innerHTML = `<p>Préparation: ${recipe.temps_preparation}</p>`;
-      card.appendChild(cardFooter);
+        // Ajoute le footer
+        const cardFooter = document.createElement("div");
+        cardFooter.id = "card-footer";
+        cardFooter.innerHTML = `<p>Préparation: ${recipe.temps_preparation}</p>`;
+        card.appendChild(cardFooter);
 
-      // Ajoute la carte au conteneur principal
-      secondCard.appendChild(card);
-      listFavBox.appendChild(secondCard);
+        // Ajoute la carte au conteneur principal
+        secondCard.appendChild(card);
+        listFavBox.appendChild(secondCard);
+      }
     });
   } else {
     listFavBox.innerHTML = `
@@ -240,4 +226,40 @@ const showListFav = () => {
   }
 };
 
-showListFav();
+// compte le nombre de recettes par catégorie
+const countRecipesByCategory = (categorie) => {
+  if (categorie === "Liste entière") {
+    return favoritesRecipes.length;
+  }
+  return favoritesRecipes.filter((recipe) => recipe.categorie === categorie)
+    .length;
+};
+
+// rempli le select d'option avec le nombre de recette par catégorie
+const selectOption = () => {
+  if (selectCategorie) {
+    selectCategorie.innerHTML = "";
+    const fullListOption = document.createElement("option");
+    fullListOption.textContent = `Liste entière (${countRecipesByCategory(
+      "Liste entière"
+    )})`;
+    fullListOption.value = "Liste entière";
+    selectCategorie.appendChild(fullListOption);
+
+    listCategory.forEach((type) => {
+      let option = document.createElement("option");
+      const count = countRecipesByCategory(type);
+      option.innerHTML = `${type} (${count})`;
+      option.value = type;
+      selectCategorie.appendChild(option);
+    });
+  }
+
+  selectCategorie.addEventListener("change", (e) => {
+    const catSelected = e.target.value;
+    showListFav(catSelected);
+  });
+};
+
+selectOption();
+showListFav("Liste entière");

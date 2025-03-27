@@ -78,6 +78,7 @@ const createModal = (index) => {
       );
 
       modalBox.innerHTML += `
+        <img src="../assets/img/${recette.image}" class="img-modal"/>
         <div class="modal-header">
           <h1>${recette.nom}</h1>
           <div class="cook-time">
@@ -166,16 +167,21 @@ const showListFav = (categorie) => {
         const indexRecipe = favoritesRecipes.indexOf(recipe);
 
         // boite recette
-        const secondCard = document.createElement("div");
-        secondCard.id = "top-box-card";
+        // sous boite de chaque recette
+        const card = document.createElement("div");
+        card.id = "card-box";
+        card.classList.add("card-box");
+        card.setAttribute("value", indexRecipe);
+
         //couleur bg cards selon categorie
         if (recipe.categorie === "Entrée") {
-          secondCard.classList.add("starter");
+          card.classList.add("starter");
         } else if (recipe.categorie === "Plat principal") {
-          secondCard.classList.add("dish");
+          card.classList.add("dish");
         } else if (recipe.categorie === "Dessert") {
-          secondCard.classList.add("dessert");
+          card.classList.add("dessert");
         }
+
         // ajoute le bouton retirer favoris
         const cardButton = document.createElement("div");
         cardButton.id = "card-button";
@@ -185,7 +191,8 @@ const showListFav = (categorie) => {
         buttonFav.setAttribute("value", indexRecipe);
 
         // event pour supprimer des favoris
-        buttonFav.addEventListener("click", () => {
+        buttonFav.addEventListener("click", (e) => {
+          e.stopPropagation();
           favoritesRecipes.splice(indexRecipe, 1);
           selectOption();
           showListFav("Liste entière");
@@ -193,19 +200,19 @@ const showListFav = (categorie) => {
         });
 
         cardButton.appendChild(buttonFav);
-        secondCard.appendChild(cardButton);
-
-        // sous boite de chaque recette
-        const card = document.createElement("div");
-        card.id = "card-box";
-        card.classList.add("card-box");
-        card.setAttribute("value", indexRecipe);
+        card.appendChild(cardButton);
 
         // event pour afficher la modale de la recette
         card.addEventListener("click", () => {
           openModal();
           createModal(indexRecipe);
         });
+
+        // ajoute l'image
+        const imgCard = document.createElement("img");
+        imgCard.setAttribute("src", `../assets/img/${recipe.image}`);
+        imgCard.classList.add("image-recipe");
+        card.appendChild(imgCard);
 
         // ajoute le titre et la catégorie
         const cardTitle = document.createElement("div");
@@ -230,12 +237,14 @@ const showListFav = (categorie) => {
         // Ajoute le footer
         const cardFooter = document.createElement("div");
         cardFooter.id = "card-footer";
-        cardFooter.innerHTML = `<p>Préparation: ${recipe.temps_preparation}</p>`;
+        cardFooter.innerHTML = `
+        <img src="../assets/img/icon-cook.png" />
+        <p>Préparation: ${recipe.temps_preparation}</p>`;
         card.appendChild(cardFooter);
 
         // Ajoute la carte au conteneur principal
-        secondCard.appendChild(card);
-        listFavBox.appendChild(secondCard);
+        // card.appendChild(card);
+        listFavBox.appendChild(card);
       }
     });
   } else {

@@ -24,6 +24,7 @@ if (localStorage.getItem("recipes-week") !== null) {
 // console.log(favoritesRecipes);
 
 // VARIABLE
+let recipeModal;
 let listCategory = [];
 allRecipe.forEach((recipe) => {
   listCategory.push(recipe.categorie);
@@ -72,15 +73,18 @@ const closeModal = () => {
 
 const createModal = (index) => {
   const modalBox = document.getElementById("modal");
-  let recipeModal;
   modalBox.innerHTML = "";
-
-  // const recipeChoose = localStorage.getItem("favorite");
-  // console.log(recipeChoose);
 
   favoritesRecipes.forEach((recette) => {
     if (favoritesRecipes.indexOf(recette) === index) {
       recipeModal = recette;
+
+      const exists = recipesWeek.some(
+        (recipe) =>
+          recipe.nom === recipeModal.nom &&
+          recipe.categorie === recipeModal.categorie
+      );
+
       modalBox.innerHTML += `
         <div class="modal-header">
           <h1>${recette.nom}</h1>
@@ -108,28 +112,51 @@ const createModal = (index) => {
             </ol>
           </div>
         </div>
-         <div class="modal-footer">
+        ${
+          exists
+            ? `
+        <div id="button-remove-footer" class="modal-footer-remove">
+          <h4>Retirer des recettes de la semaine?</h4>
+          <button id="remove-recipe-day" type="submit" class="button-remove">
+              <img src="../assets/img/icon-remove.png" />
+          </button>
+        </div>`
+            : `<div id="button-add-footer" class="modal-footer-add">
           <h4>Ajouter aux recettes de la semaine?</h4>
           <button id="add-recipe-day" type="submit" class="button-add">
               <img src="../assets/img/icon-add.png" />
           </button>
-          <p class="infoMsg"></p>
-        </div>
+        </div>`
+        }
+        
       `;
     }
   });
 
-  // ajouter un plat favori a un jour de la semaine
+  // ajouter un plat a la liste de la semaine
   const addRecipeDay = document.getElementById("add-recipe-day");
+  if (addRecipeDay) {
+    addRecipeDay.addEventListener("click", () => {
+      recipesWeek.push(recipeModal);
+      localStorage.setItem("recipes-week", JSON.stringify(recipesWeek));
+      createModal(index);
+    });
+  }
 
-  addRecipeDay.addEventListener("click", () => {
-    recipesWeek.push(recipeModal);
-    localStorage.setItem("recipes-week", JSON.stringify(recipesWeek));
-  });
+  // retirer un plat a la liste de la semaine
+  const removeRecipeDay = document.getElementById("button-remove-footer");
+  if (removeRecipeDay) {
+    removeRecipeDay.addEventListener("click", () => {
+      const indexRecipe = recipesWeek.indexOf(recipeModal);
+      recipesWeek.splice(indexRecipe, 1);
+      localStorage.setItem("recipes-week", JSON.stringify(recipesWeek));
+      createModal(index);
+    });
+  }
 
+  // event fermeture modale
   const modalCloseIcon = document.getElementById("modal-icon-close");
   modalCloseIcon.addEventListener("click", (e) => {
-    console.log(e);
     closeModal();
   });
 };

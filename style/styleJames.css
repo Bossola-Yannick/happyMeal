@@ -227,7 +227,8 @@ select:focus {
     font-weight: bold;
 }
 
-.modal-footer {
+.modal-footer-add,
+.modal-footer-remove {
     width: 100%;
     text-align: center;
     display: flex;
@@ -236,14 +237,18 @@ select:focus {
     gap: 0.5rem;
 }
 
-.button-add {
+.button-add,
+.button-remove {
     background-color: transparent;
     border: none;
     cursor: pointer;
 }
-.button-add img {
+
+.button-add img,
+.button-remove img {
     width: 2rem;
     aspect-ratio: 1 / 1;
 }
+
 
 

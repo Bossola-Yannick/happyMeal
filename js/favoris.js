@@ -73,7 +73,10 @@ const createModal = (index) => {
       modalBox.innerHTML += `
         <div class="modal-header">
           <h1>${recette.nom}</h1>
-          <p>Préparation: ${recette.temps_preparation}</p>
+          <div class="cook-time">
+            <img src="../assets/img/icon-cook.png" />
+            <p>Préparation: ${recette.temps_preparation}</p>
+          </div>
         </div>
         <div id="modal-close" class="modal-close">
           <img id="modal-icon-close" src="../assets/img/icon-close.png" />
@@ -102,9 +105,20 @@ const createModal = (index) => {
               .map((day) => `<option value="${day}">${day}</option>`)
               .join("")}
           </select>
+          <button id="add-recipe-day" type="submit" class="button-add">
+              <img src="../assets/img/icon-add.png" />
+          </button>
+          <p class="infoMsg"></p>
         </div>
       `;
     }
+  });
+
+  const selectDay = document.getElementById("dayOfWeekSelect");
+  const addRecipeDay = document.getElementById("add-recipe-day");
+
+  selectDay.addEventListener("click", (e) => {
+    console.log(selectDay.value);
   });
 
   const modalCloseIcon = document.getElementById("modal-icon-close");

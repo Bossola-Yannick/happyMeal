@@ -5,6 +5,12 @@ $("body").on("click", ".card", function (e) {
 // fonction création de carte recette, Une par catégorie
 const getRecipe = (recipe) => {
   let card = $("<article></article>").attr({ class: "card" });
+  let favorisContainer = $("<div></div>").attr({ class: "container-favorite" });
+  let iconFavorie = $("<img/>").attr({
+    src: `../assets/img/icon-pasFavoris.png`,
+    class: "favorite-icon",
+    value: recipe.nom,
+  });
   // ajout de condition pour la catégorie
   if (recipe.categorie === "Entrée") {
     card.attr({ class: "card starter" });
@@ -60,6 +66,8 @@ const getRecipe = (recipe) => {
   // insersion des élément entre eux
   card.append(cardFaceFront);
   cardFaceFront.append(cardContainerImg);
+  cardFaceFront.append(favorisContainer);
+  favorisContainer.append(iconFavorie);
   cardContainerImg.append(cardImg);
   cardFaceFront.append(cardCategorie);
   cardFaceFront.append(cardTitleFront);

@@ -54,7 +54,7 @@
   background-color: rgba(152, 120, 204, 0.589);
 }
 
-/* estion des faces des cartes */
+/* gestion du retournement des cartes */
 .card-face {
   position: absolute;
   width: 92%;
@@ -70,4 +70,16 @@
 .flip {
   transform: rotateY(180deg);
 }
-/* findes faces des carte */
+
+/* gestion de l'icon favoris */
+
+.container-favorite {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+}
+.favorite-icon {
+  max-width: 100%;
+}

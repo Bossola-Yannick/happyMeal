@@ -1,7 +1,7 @@
 let allRecipe;
-let starter = [];
-let dish = [];
-let dessert = [];
+// let starter = [];
+// let dish = [];
+// let dessert = [];
 // JSON: récupération des données
 const getJson = async () => {
   try {
@@ -25,17 +25,6 @@ if (!localStorage.getItem("all-recipe")) {
   allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
   //   console.log(allRecipe);
 }
-
-// mise en place des recettes par catégorie
-for (recipe of allRecipe) {
-  if (recipe.categorie === "Entrée") {
-    starter.push(recipe);
-  } else if (recipe.categorie === "Plat principal") {
-    dish.push(recipe);
-  } else if (recipe.categorie === "Dessert") {
-    dessert.push(recipe);
-  }
+if (!localStorage.getItem("favorite")) {
+  localStorage.setItem("favorite", []);
 }
-localStorage.setItem("starter", JSON.stringify(starter));
-localStorage.setItem("dish", JSON.stringify(dish));
-localStorage.setItem("dessert", JSON.stringify(dessert));

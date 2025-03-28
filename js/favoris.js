@@ -148,8 +148,8 @@ const createModal = (index) => {
   }
 
   // event fermeture modale
-  const modalCloseIcon = document.getElementById("modal-icon-close");
-  modalCloseIcon.addEventListener("click", (e) => {
+  const modalClose = document.getElementById("modal-close");
+  modalClose.addEventListener("click", (e) => {
     closeModal();
   });
 };

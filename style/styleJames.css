@@ -3,11 +3,22 @@
     padding: 0;
     box-sizing: border-box;
     font-family: "Roboto", sans-serif;
-    /* list-style: none; */
 }
 
 body {
     background-color: rgba(238, 231, 231, 0.589);
+}
+
+nav ul {
+    list-style: none;
+}
+
+.main-james {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 2rem;
 }
 
 /* couleur cards */
@@ -29,10 +40,18 @@ body {
 }
 
 /* select bouton */
+
+.btn-select {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
 select {
     background-color: rgba(230, 224, 224, 0.74);
     width: 10rem;
-    margin: 0 auto;
     padding: 0.5rem 0;
     border-radius: 4px;
     text-align: center;
@@ -45,45 +64,48 @@ select:focus {
     outline: none;
 }
 
-
 /* card */
 .showBox {
     width: 100%;
+    padding: 1rem;
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: stretch;
     flex-wrap: wrap;
-    gap: 1.6rem;
+    gap: 4rem;
 }
 
 #card-button {
     text-align: right;
     position: absolute;
-    top: 0.2rem;
+    top: 0.5rem;
     right: 0.5rem;
 }
 
 .button-fav-remove {
     width: 2.5rem; 
     height: 2.5rem;
-    background-color: transparent;
+    background-color: rgba(215, 215, 215, 0.247);
     background-image: url(../assets/img/icon-fav.png);
     background-size: cover;
     background-repeat: no-repeat;
-    border: none;
+    border: 2px solid rgb(216, 216, 216);
     cursor: pointer;
     transition: 0.2s all ease-in-out;
-    filter: drop-shadow(0.2rem 0.1rem 0.1rem rgb(0, 0, 0))
+    border-radius: 100%;
+    /* filter: drop-shadow(0.2rem 0.1rem 0.5rem rgb(0, 0, 0)) */
+    
+    
 }
 
 .button-fav-remove:hover {
     background-image: url(../assets/img/icon-pasFavoris.png);
-    filter: drop-shadow(0.2rem 0.1rem 0.1rem rgb(0, 0, 0));
+    /* filter: drop-shadow(0.2rem 0.1rem 0.1rem rgb(0, 0, 0)); */
 }
 
 .image-recipe {
     width: 100%;
-    max-height: 12rem;
+    height: 12rem;
     object-fit: cover;
     border-bottom: 0.2rem solid rgba(0, 0, 0, 0.414);
 }
@@ -99,6 +121,7 @@ select:focus {
     gap: 1.3rem;
     border-radius: 4px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    flex: 1;
 }
 
 #card-title,
@@ -147,6 +170,7 @@ select:focus {
 }
 
 .modal {
+    list-style: disc;
     position: fixed ;
     top: 50%;
     left: 50%;
@@ -156,7 +180,7 @@ select:focus {
     width: 100%;
     max-width: 60rem;;
     height: 95vh;
-    padding: 2.4rem 0 1.2rem;
+    padding: 0rem 0 1.2rem;
     box-shadow: rgba(99,99,99, 0.2) 0px 2px 8px 0px;
     border-radius: 5px;
     /* display: flex; */
@@ -181,10 +205,22 @@ select:focus {
     scroll-behavior: smooth;
 }
 
+.img-modal {
+    width: 100%;
+    max-height: 25rem ;
+    object-fit: cover;
+}
+
 .modal-close {
+    background-color: white;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.5rem solid white;
     position: absolute;
-    top: 8px;
-    right: 8px;
+    top: 0.8rem;
+    right: 1rem;
     cursor: pointer;
     transition: 0.3s all ease-in-out;
 }
@@ -196,10 +232,6 @@ select:focus {
 
 .modal-close:hover {
     transform: rotate(360deg);
-}
-
-.img-modal {
-    width: 100%;
 }
 
 .modal-header {
@@ -313,8 +345,14 @@ select:focus {
 }
 
 .empty-list {
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+}
+
+.msg-info {
+    font-weight: bold;
+    font-size: 2.2rem;
 }

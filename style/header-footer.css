@@ -1,0 +1,40 @@
+body {
+  background-color: rgba(238, 231, 231, 0.589);
+}
+/* HEADER */
+.header-bar {
+  max-height: 5em;
+  display: flex;
+  background-color: rgba(230, 224, 224, 0.74);
+  padding: 0.5rem;
+  margin-bottom: 2rem;
+}
+.logo {
+  max-height: 100%;
+}
+#container-nav {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#nav-bar-list {
+  display: flex;
+  justify-content: space-around;
+}
+.nav-bar-item a {
+  color: black;
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+/* FOOTER */
+footer {
+  min-height: 2rem;
+  text-align: center;
+  background-color: rgba(230, 224, 224, 0.74);
+}
+.copyrigth {
+  font-size: 1.2rem;
+  padding: 1rem;
+}

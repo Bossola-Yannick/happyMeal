@@ -1,6 +1,6 @@
 // LOCAL STORAGE
 
-// let allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
+allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
 // console.log(allRecipe);
 let favoritesRecipes;
 if (localStorage.getItem("favorite") !== null) {
@@ -156,6 +156,19 @@ const showListFav = () => {
 
       // event pour supprimer des favoris
       buttonFav.addEventListener("click", () => {
+        // CODE YANNICK
+        // suppresion des favoris de la recette dans allRecipe apres récupération de l'index de celle-ci
+        let allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
+        console.log(recipe);
+
+        let index = allRecipe.findIndex(
+          (u) => u.nom.toLowerCase() === recipe.nom.toLowerCase()
+        );
+        console.log(index);
+
+        delete allRecipe[index].favorite;
+        localStorage.setItem("all-recipe", JSON.stringify(allRecipe));
+        // CODE JAMES
         favoritesRecipes.splice(indexRecipe, 1);
         showListFav();
         localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));

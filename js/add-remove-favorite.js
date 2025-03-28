@@ -1,7 +1,6 @@
 allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
 let recipeLoad = allRecipe;
 // Gestion des favoris
-let favoritesRecipes = [];
 $("body").on("click", ".favorite-icon", function (e) {
   e.stopPropagation();
   let attribute = $(this).attr("src");
@@ -28,9 +27,6 @@ $("body").on("click", ".favorite-icon", function (e) {
     allRecipe[index].favorite = "favorite";
     localStorage.setItem("all-recipe", JSON.stringify(allRecipe));
     $(this).attr({ src: favorite });
-    if (document.location.href != "http://127.0.0.1:5500/index.html") {
-      document.location.href = "./allRecipe.html";
-    } else document.location.href = "../index.html";
   } else {
     // Supprimer du localStorage des favoris
     let favRecipes = JSON.parse(localStorage.getItem("favorite")) || [];
@@ -41,8 +37,5 @@ $("body").on("click", ".favorite-icon", function (e) {
     delete allRecipe[index].favorite;
     localStorage.setItem("all-recipe", JSON.stringify(allRecipe));
     $(this).attr({ src: noFavorite });
-    if (document.location.href != "http://127.0.0.1:5500/index.html") {
-      document.location.href = "./allRecipe.html";
-    } else document.location.href = "../index.html";
   }
 });

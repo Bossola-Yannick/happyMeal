@@ -33,6 +33,7 @@ footer {
   min-height: 2rem;
   text-align: center;
   background-color: rgba(230, 224, 224, 0.74);
+  margin-top: 2rem;
 }
 .copyrigth {
   font-size: 1.2rem;

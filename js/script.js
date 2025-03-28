@@ -25,6 +25,3 @@ if (!localStorage.getItem("all-recipe")) {
   allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
   //   console.log(allRecipe);
 }
-if (!localStorage.getItem("favorite")) {
-  localStorage.setItem("favorite", []);
-}

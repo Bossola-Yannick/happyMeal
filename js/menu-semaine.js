@@ -8,10 +8,23 @@ if (localStorage.getItem("recipes-week") !== null) {
   recipesWeek = JSON.parse(localStorage.getItem("recipes-week"));
 }
 
+const recipeTag = () => {
+  const recipeBox = document.getElementById("recipe-box");
+
+  recipesWeek.forEach((recipe) => {
+    const recipeTag = document.createElement("li");
+    recipeTag.classList.add("draggable", "tag-recipe");
+    recipeTag.innerText = recipe.nom;
+    recipeBox.appendChild(recipeTag);
+  });
+};
+
+recipeTag();
+
 $(function () {
   $(".sortable").sortable({
     stop: function (event, ui) {
-      ui.item.removeAttr("style"); // Supprime l'attribut style de l'élément trié
+      ui.item.removeAttr("style");
     },
   });
 
@@ -23,10 +36,9 @@ $(function () {
   $(".drop-recipe").droppable({
     accept: ".draggable",
     drop: function (e, ui) {
-      console.log(e.target.textContent);
-      $(this).append(
-        $("<li>").text(ui.draggable.text()).addClass("tag-recipe")
-      );
+      //   console.log(ui.draggable);
+      const recipeName = ui.draggable.text();
+      $(this).append($("<li>").text(recipeName).addClass("tag-recipe"));
     },
   });
 

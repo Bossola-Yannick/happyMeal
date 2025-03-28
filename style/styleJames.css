@@ -383,6 +383,7 @@ select:focus {
     padding: 0.2rem 1.5rem;
     background-color: aqua;
     border: 1px solid green;
+    cursor: move;
 }
 
 .week-day-container {

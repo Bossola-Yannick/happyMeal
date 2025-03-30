@@ -379,37 +379,99 @@ select:focus {
     flex-wrap: wrap;
 }
 
-.tag-recipe {
+/* .list-fav li {
     padding: 0.2rem 1.5rem;
+} */
+
+.tag-recipe {
+    width: auto;
+    height: 100%;
+    padding: 0.2rem 0.5rem;
     background-color: aqua;
     border: 1px solid green;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     cursor: move;
+}
+
+.remove-tag {
+    width: 1.2rem;
+    height: 1.2rem;
+    cursor: pointer;
 }
 
 .week-day-container {
     width: 100%;
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 1rem 0;
 }
 
 .day {
-    width: 12rem;
+    min-width: 14rem;
+    max-width: 14rem;
     min-height: 30rem;
+    /* padding: 0.8rem 0.5rem; */
     border: 2px solid blue;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    flex: 1;
+    gap:1.5rem;
+}
+
+.day h2 {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.8rem;
+    background-color: rgb(206, 206, 206);
+    text-align: center;
+}
+
+.title-meal {
+    font-weight: bold;
 }
 
 .box-planning {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.meal-time-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.meal-box {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:0.2rem;
 }
 
 .drop-recipe {
     width: 100%;
-    background-color: gray;
+    background-color: rgb(202, 91, 91);
     border: 2px solid purple;
-    min-height: 13rem;
+    min-height: 2rem;
     height: auto;
+    align-content: center;
+    position: relative;
+}
+
+.time-day {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
 }

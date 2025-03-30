@@ -8,6 +8,8 @@ if (localStorage.getItem("recipes-week") !== null) {
   recipesWeek = JSON.parse(localStorage.getItem("recipes-week"));
 }
 
+console.log(recipesWeek);
+
 // affiche planning
 const showPlanning = () => {
   const weekDay = [
@@ -136,3 +138,26 @@ const dropBox = () => {
 };
 
 dropBox();
+
+// recup data du planning
+const dataPlanning = () => {
+  const dataBoxes = document.getElementsByClassName("drop-recipe");
+  const planningData = [];
+  for (let box of dataBoxes) {
+    const recipeName = box.querySelector("p")?.innerText || null;
+    if (recipeName) {
+      recipesWeek.forEach((recipe) => {
+        if (recipeName === recipe.nom) {
+          planningData.push(recipe.ingredients);
+        }
+      });
+    }
+  }
+  console.log("planning: ", planningData);
+  return planningData;
+};
+
+const buttonPlanning = document.getElementById("get-planning");
+buttonPlanning.addEventListener("click", () => {
+  dataPlanning();
+});

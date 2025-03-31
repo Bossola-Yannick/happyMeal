@@ -10,13 +10,10 @@
       defer
     ></script>
     <script src="../js/script.js" defer></script>
-    <script src="../js/card.js" defer></script>
-    <script src="../js/allRecipe.js" defer></script>
-    <script src="../js/add-remove-favorite.js" defer></script>
+    <script src="../js/list.js" defer></script>
     <link rel="stylesheet" href="../style/reset.css" />
     <link rel="stylesheet" href="../style/header-footer.css" />
-    <link rel="stylesheet" href="../style/allRecipe.css" />
-    <link rel="stylesheet" href="../style/card.css" />
+    <link rel="stylesheet" href="../style/list.css" />
   </head>
   <body>
     <header class="header-bar">
@@ -45,12 +42,19 @@
       </div>
     </header>
     <main>
-      <h1 class="title-allRecipe">Toutes nos recettes pour avoir la Frite</h1>
-      <section id="container-card">
-        <!-- Insertion des cartes ICI  -->
-      </section>
-      <section id="paging">
-        <!--Insertion de la pagination ICI-->
+      <h1 class="title-list">
+        Votre liste de Courses pour éviter de manger que de la purée
+      </h1>
+      <section id="container-list">
+        <!-- Insertion de la liste de course ICI  -->
+        <div class="sheet">
+          <h3 class="sheet-title">Liste de courses</h3>
+          <div id="shoppingList">
+            <ul class="list" id="my-shopping-list"></ul>
+          </div>
+        </div>
+        <button class="buttonPrint">Imprimer ma liste de courses</button>
+        <button class="buttonDeletePrint">Supprimer la liste de courses</button>
       </section>
     </main>
     <footer><h6 class="copyrigth">&#169; BY Orkblan</h6></footer>

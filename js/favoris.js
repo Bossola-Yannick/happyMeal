@@ -1,15 +1,15 @@
 // LOCAL STORAGE
 
 allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
-// console.log(allRecipe);
-let favoritesRecipes;
-if (localStorage.getItem("favorite") !== null) {
-  favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
-} else {
-  favoritesRecipes = allRecipe.slice(3, 8);
-  localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));
-  favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
-}
+// // console.log(allRecipe);
+let favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
+// if (localStorage.getItem("favorite") !== null) {
+//   favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
+// } else {
+//   favoritesRecipes = allRecipe.slice(3, 8);
+//   localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));
+//   favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
+// }
 
 let recipesWeek;
 
@@ -159,7 +159,6 @@ const showListFav = () => {
         // CODE YANNICK
         // suppresion des favoris de la recette dans allRecipe apres récupération de l'index de celle-ci
         let allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
-        console.log(recipe);
 
         let index = allRecipe.findIndex(
           (u) => u.nom.toLowerCase() === recipe.nom.toLowerCase()

@@ -62,7 +62,7 @@ const getRecipe = (recipe) => {
     ingredientList.push(ingredient.nom);
   }
   let cardIngredient = $("<p></p>")
-    .text(`ingredient : ${ingredientList}`)
+    .text(`Ingrédients : ${ingredientList}`)
     .attr({});
   // gestion des étapes de préparation
   //

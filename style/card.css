@@ -9,7 +9,7 @@
 .card {
   box-sizing: border-box;
   position: relative;
-  min-height: 27rem;
+  min-height: 30rem;
   width: 25%;
   border: 2px solid grey;
   border-radius: 10px;

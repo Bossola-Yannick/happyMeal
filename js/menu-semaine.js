@@ -1,3 +1,5 @@
+allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
+
 let recipesWeek;
 
 if (localStorage.getItem("recipes-week") !== null) {
@@ -48,6 +50,7 @@ const showPlanning = () => {
                 </div>
               </div>
             </div>
+            <hr class="separator">
             <!-- soir -->
             <div id="time-day" class="time-day">
               <h4 class="title-meal">Soir</h4>
@@ -127,9 +130,9 @@ const dropBox = () => {
       if (selectRecipe) {
         box.innerHTML = "";
         box.appendChild(selectRecipe);
+        selectRecipe.style.backgroundColor = "#beca0f75";
         selectRecipe.addEventListener("dragstart", (e) => {
           selectRecipe = e.target;
-          console.log("Re-dragging:", selectRecipe);
         });
         selectRecipe = null;
       }
@@ -157,7 +160,7 @@ const generateShoppingList = () => {
 };
 
 // generation shopping liste evenement
-const getShoppingList = document.getElementById("get-planning");
+const getShoppingList = document.getElementById("get-shopping-list");
 getShoppingList.addEventListener("click", () => {
   generateShoppingList();
 });
@@ -193,14 +196,38 @@ const fillPlanning = () => {
       newElementP.innerText = element;
       newElementTag.appendChild(newElementP);
 
+      // div icon
+      const boxIcons = document.createElement("div");
+      boxIcons.classList.add("box-icons");
+
+      // icon info recette
+      const newElementInfo = document.createElement("img");
+      newElementInfo.setAttribute("src", "../assets/img/icon-info.png");
+      newElementInfo.classList.add("info-tag");
+      boxIcons.appendChild(newElementInfo);
+
+      newElementInfo.addEventListener("click", () => {
+        let index;
+        allRecipe.forEach((recipe) => {
+          if (element === recipe.nom) {
+            index = allRecipe.indexOf(recipe);
+          }
+        });
+        openModal();
+        createModal(index);
+      });
+
+      // icon remove image
       const newElementImg = document.createElement("img");
       newElementImg.setAttribute("src", "../assets/img/icon-remove.png");
       newElementImg.classList.add("remove-tag");
-      newElementTag.appendChild(newElementImg);
+      boxIcons.appendChild(newElementImg);
 
       newElementImg.addEventListener("click", () => {
         newElementTag.remove();
       });
+
+      newElementTag.appendChild(boxIcons);
 
       box.appendChild(newElementTag);
     }

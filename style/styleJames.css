@@ -142,6 +142,10 @@ select:focus {
 
 .tag-ingredient {
     background-color: rgba(255, 255, 255, 0.493);
+}
+
+.tag-ingredient,
+.tag-recipe {
     padding: 0.1rem 0.5rem;
     border-radius: 4px;
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
@@ -190,10 +194,9 @@ select:focus {
     display: none;
 }
 
-.modal-visible {
-    display: block;
-    opacity: 1; 
-    transform: translate(-50%, -50%) scale(1); 
+.modal h1 {
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 .scroller {
@@ -205,7 +208,7 @@ select:focus {
 
 .img-modal {
     width: 100%;
-    max-height: 25rem ;
+    height: 28rem;
     object-fit: cover;
 }
 
@@ -237,6 +240,7 @@ select:focus {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    text-align: center;
 }
 
 .modal-header p {
@@ -262,7 +266,7 @@ select:focus {
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1rem;
 }
 
 .ingredients {
@@ -299,10 +303,15 @@ select:focus {
 
 .cooking-steps {
     width: 100%;
-    padding: 1rem;
+    padding: 1rem 1rem 1rem 3rem;
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
+}
+
+.cooking-steps h3 {
+    font-weight: bold;
+    font-size: 1.2rem;
 }
 
 .cooking-steps ol {
@@ -357,81 +366,197 @@ select:focus {
 
 /* menu semaine */
 
-.main-week {
+/* .main-week {
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+} */
+
+.buttons-planning {
+    width: 100%;
+    min-height: 3rem;
+    height: auto;
+    margin: 0 auto;
+    padding: 0 4rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem
+}
+
+.edit-planning {
+    width: 35%;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 3rem;
+}
+
+.button-save,
+.button-reset {
+    flex: 1;
+}
+
+.button-shopping,
+.button-save,
+.button-reset {
+    width: auto;
+    min-height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: 0;
+    padding: 0.3rem 0.8rem;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-size: 14px;
+    color: white;
+}
+
+.button-shopping:hover,
+.button-save:hover,
+.button-reset:hover {
+    font-weight: bold;
+    transform: scale(1.1);
+}
+
+.button-reset {
+    background-color: rgb(251, 80, 80);
+    box-shadow: rgba(202, 22, 22, 0.493) 0px 2px 3px;
+}
+.button-reset:hover {
+    box-shadow: rgb(219, 57, 57) 0px 2px 3px, rgb(251, 80, 80) 0px 0px 0px 3px;
+}
+
+.button-shopping {
+    background-color: rgb(80, 174, 251);
+    color: rgb(23, 47, 77);
+    box-shadow: rgba(22, 142, 202, 0.493) 0px 2px 3px;
+}
+.button-shopping:hover {
+    box-shadow: rgb(65, 141, 203) 0px 2px 3px,rgb(80, 174, 251) 0px 0px 0px 3px;
+}
+
+.button-save {
+    background-color: rgb(71, 221, 93);
+    color: rgb(23, 77, 31);
+    box-shadow: rgba(22, 202, 61, 0.493) 0px 2px 3px;
+}
+.button-save:hover {
+    box-shadow: rgb(65, 203, 86) 0px 2px 3px,rgb(71, 221, 93)0px 0px 0px 3px;
 }
 
 .box-all-favorite {
-    width: 90%;
-    min-width: 40rem;
+    width: 95%;
     margin: 0 auto;
-    border: 2px solid red;
+}
+
+.separator {
+    background-color: #E9E4E4;
+    width: 60%;
+    margin: 2rem auto;
+    height: 0.2rem;
+    border: none;
 }
 
 .list-fav {
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    gap: 0.6rem;
 }
 
 .recipe {
     width: auto;
     height: 100%;
-    padding: 0.2rem 0.5rem;
+    padding: 0.5rem 0.8rem;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    text-align: center;
 }
 
 .tag-recipe {
-    background-color: aqua;
-    border: 1px solid green;
     cursor: move;
 }
 
 .saved-recipe {
-    background-color: rgb(122, 201, 122);
-    border: 1px solid rgb(93, 151, 93);
+    width: 100%;
+    background-color: #108a4175;
+    /* background-color: #beca0f75; */
+    color: #062d16cf;
+    font-weight: bold;
+    display: flex;
+    align-items: stretch;
 }
 
-.remove-tag {
-    width: 1.2rem;
-    height: 1.2rem;
+.saved-recipe p {
+    width: 40%;
+    align-content: center;
+    flex:2;
+}
+
+.box-icons {
+    width: 3rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.remove-tag,
+.info-tag {
+    width: 1.5rem;
+    height: 1.5rem;
     cursor: pointer;
 }
 
 .week-day-container {
     width: 100%;
+    min-height: 30rem;
+    margin-bottom: 2rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: stretch;
     flex-wrap: wrap;
-    gap: 1rem 0;
+    gap: 2.5rem 0;
 }
 
 .day {
-    min-width: 14rem;
-    max-width: 14rem;
-    min-height: 30rem;
-    /* padding: 0.8rem 0.5rem; */
-    border: 2px solid blue;
+    min-width: 16rem;
+    max-width: 22rem;
+    height: auto;
+    border: 0.3rem solid #F5F1F1;
     display: flex;
     flex-direction: column;
     flex: 1;
-    gap:1.5rem;
+    gap: 1.5rem;
 }
 
 .day h2 {
     width: 100%;
     padding: 1rem;
     font-size: 1.8rem;
-    background-color: rgb(206, 206, 206);
+    background-color: #E9E4E4;
     text-align: center;
+    letter-spacing: 3px;
+}
+
+.day h4 {
+    font-size: 1.3rem;
+    
 }
 
 .title-meal {
@@ -442,18 +567,21 @@ select:focus {
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    justify-content: space-between;
+    flex: 1;
 }
 
 .meal-time-box {
     width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     gap: 0.6rem;
 }
 
 .meal-box {
     width: 100%;
+    height: auto;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -464,12 +592,12 @@ select:focus {
 
 .drop-recipe {
     width: 100%;
-    background-color: rgb(202, 91, 91);
-    border: 2px solid purple;
-    min-height: 2rem;
+    background-color: #bca68f5d;
+    min-height: 3rem;
     height: auto;
     align-content: center;
     position: relative;
+    border-radius: 5px;
 }
 
 .time-day {
@@ -479,3 +607,16 @@ select:focus {
     align-items: center;
     gap: 1.2rem;
 }
+
+
+/* media queries modal */
+
+@media screen and (max-width:980px) {
+    .modal {
+        height: 100vh;
+    }
+    .cooking-steps {
+        padding: 1rem;
+    }
+}
+

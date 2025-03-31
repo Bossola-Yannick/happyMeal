@@ -180,7 +180,6 @@ const savePlanningWeek = () => {
 const fillPlanning = () => {
   const planningSaved = JSON.parse(localStorage.getItem("saved-planning"));
   const boxRecipe = document.getElementsByClassName("drop-recipe");
-  console.log(boxRecipe);
   planningSaved.forEach((element, index) => {
     const box = boxRecipe[index];
     box.innerHTML = "";
@@ -218,3 +217,13 @@ buttonSave.addEventListener("click", (e) => {
 if (localStorage.getItem("saved-planning") !== null) {
   fillPlanning();
 }
+
+// bouton reset
+const buttonReset = document.getElementById("reset-planning");
+buttonReset.addEventListener("click", () => {
+  localStorage.removeItem("saved-planning");
+  localStorage.removeItem("shopping-list");
+  for (let box of dataBoxes) {
+    box.innerHTML = "";
+  }
+});

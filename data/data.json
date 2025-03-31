@@ -8,19 +8,23 @@
          "ingredients":[
             {
                "nom":"Poulet",
-               "quantite":"1"
+               "quantite":"1",
+               "unite": "p"
             },
             {
                "nom":"Herbes fraîches",
-               "quantite":"1"
+               "quantite":"1",
+               "unite": "p"
             },
             {
                "nom":"Sel et poivre",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             },
             {
                "nom":"Huile d'olive",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             }
          ],
          "etapes":[
@@ -39,27 +43,33 @@
          "ingredients":[
             {
                "nom":"quinoa",
-               "quantite":"200g"
+               "quantite":"200",
+               "unite": "gr"
             },
             {
                "nom":"Poivron",
-               "quantite":"3"
+               "quantite":"3",
+               "unite": "p"
             },
             {
                "nom":"Sel et poivre",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             },
             {
                "nom":"Huile d'olive",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             },
             {
                "nom":"Jus de citron",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             },
             {
                "nom":"Huile d'olive",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             }
          ],
          "etapes":[
@@ -78,27 +88,33 @@
          "ingredients":[
             {
                "nom":"Pâte brisée",
-               "quantite":"1"
+               "quantite":"1",
+               "unite": "p"
             },
             {
                "nom":"Pomme",
-               "quantite":"3"
+               "quantite":"3",
+               "unite": "p"
             },
             {
                "nom":"Sucre",
-               "quantite":"50g"
+               "quantite":"50",
+               "unite": "gr"
             },
             {
                "nom":"Canelle",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             },
             {
                "nom":"Beurre",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             },
             {
                "nom":"Huile d'olive",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             }
          ],
          "etapes":[
@@ -119,27 +135,33 @@
          "ingredients":[
             {
                "nom":"Lentille",
-               "quantite":"250g"
+               "quantite":"250",
+               "unite": "gr"
             },
             {
                "nom":"Oignon",
-               "quantite":"3"
+               "quantite":"3",
+               "unite": "p"
             },
             {
                "nom":"Carottes",
-               "quantite":"50g"
+               "quantite":"50",
+               "unite": "gr"
             },
             {
                "nom":"Celeri",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             },
             {
                "nom":"Beurre",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             },
             {
                "nom":"Huile d'olive",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             }
          ],
          "etapes":[
@@ -160,27 +182,33 @@
          "ingredients":[
             {
                "nom":"Pates",
-               "quantite":"500g"
+               "quantite":"500",
+               "unite": "gr"
             },
             {
                "nom":"Lardon",
-               "quantite":"300g"
+               "quantite":"300",
+               "unite": "gr"
             },
             {
                "nom":"Oeuf",
-               "quantite":"3"
+               "quantite":"3",
+               "unite": "p"
             },
             {
                "nom":"Parmesan",
-               "quantite":"50g"
+               "quantite":"50",
+               "unite": "gr"
             },
             {
                "nom":"Beurre",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             },
             {
                "nom":"Huile d'olive",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             }
          ],
          "etapes":[
@@ -202,27 +230,33 @@
          "ingredients":[
             {
                "nom":"Riz",
-               "quantite":"300g"
+               "quantite":"300",
+               "unite": "gr"
             },
             {
                "nom":"Oigons",
-               "quantite":"3"
+               "quantite":"3",
+               "unite": "p"
             },
             {
                "nom":"Vin blanc",
-               "quantite":"50g"
+               "quantite":"50",
+               "unite": "gr"
             },
             {
                "nom":"Parmesan",
-               "quantite":"50g"
+               "quantite":"50",
+               "unite": "gr"
             },
             {
                "nom":"Beurre",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             },
             {
                "nom":"Huile d'olive",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             }
          ],
          "etapes":[
@@ -246,19 +280,23 @@
          "ingredients":[
             {
                "nom":"Fruits variés",
-               "quantite":"3"
+               "quantite":"3",
+               "unite": "p"
             },
             {
                "nom":"Jus d'orange ou de citron",
-               "quantite":"100g"
+               "quantite":"100",
+               "unite": "gr"
             },
             {
                "nom":"Miel ou sirop d'érable (facultatif)",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             },
             {
-               "nom":"Feuilles de menthe fraîche pour garnir",
-               "quantite":"4"
+               "nom":"Feuilles de menthe fraîche ",
+               "quantite":"4",
+               "unite": "p"
             }
          ],
          "etapes":[
@@ -278,27 +316,33 @@
          "ingredients":[
             {
                "nom":"Aubergine",
-               "quantite":"1"
+               "quantite":"1",
+               "unite": "p"
             },
             {
                "nom":"Courgette",
-               "quantite":"3"
+               "quantite":"3",
+               "unite": "p"
             },
             {
                "nom":"Poivron",
-               "quantite":"2"
+               "quantite":"2",
+               "unite": "p"
             },
             {
                "nom":"Tomate",
-               "quantite":"4"
+               "quantite":"4",
+               "unite": "p"
             },
             {
                "nom":"Oignon",
-               "quantite":"2"
+               "quantite":"2",
+               "unite": "p"
             },
             {
                "nom":"Huile d'olive",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             }
          ],
          "etapes":[
@@ -320,27 +364,33 @@
          "ingredients":[
             {
                "nom":"Laitue",
-               "quantite":"1"
+               "quantite":"1",
+               "unite": "p"
             },
             {
                "nom":"Poulet",
-               "quantite":"1"
+               "quantite":"1",
+               "unite": "p"
             },
             {
                "nom":"Crouton",
-               "quantite":"50g"
+               "quantite":"50",
+               "unite": "gr"
             },
             {
                "nom":"Parmesan",
-               "quantite":"50g"
+               "quantite":"50",
+               "unite": "gr"
             },
             {
                "nom":"Beurre",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             },
             {
                "nom":"Huile d'olive",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             }
          ],
          "etapes":[
@@ -360,27 +410,33 @@
          "ingredients":[
             {
                "nom":"Riz",
-               "quantite":"100g"
+               "quantite":"100",
+               "unite": "gr"
             },
             {
                "nom":"Champignons",
-               "quantite":"500g"
+               "quantite":"500",
+               "unite": "gr"
             },
             {
                "nom":"Oignons",
-               "quantite":"3"
+               "quantite":"3",
+               "unite": "p"
             },
             {
                "nom":"Vin blanc",
-               "quantite":"50g"
+               "quantite":"50",
+               "unite": "gr"
             },
             {
                "nom":"Beurre",
-               "quantite":"50g"
+               "quantite":"50",
+               "unite": "gr"
             },
             {
                "nom":"Huile d'olive",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             }
          ],
          "etapes":[
@@ -404,27 +460,33 @@
          "ingredients":[
             {
                "nom":"Farine",
-               "quantite":"200g"
+               "quantite":"200",
+               "unite": "gr"
             },
             {
                "nom":"Sucre",
-               "quantite":"100g"
+               "quantite":"100",
+               "unite": "gr"
             },
             {
                "nom":"Levure",
-               "quantite":"1"
+               "quantite":"1",
+               "unite": "p"
             },
             {
                "nom":"Lait",
-               "quantite":"100g"
+               "quantite":"100",
+               "unite": "gr"
             },
             {
                "nom":"Oeuf",
-               "quantite":"1"
+               "quantite":"1",
+               "unite": "p"
             },
             {
                "nom":"Mirtilles",
-               "quantite":"150g"
+               "quantite":"150",
+               "unite": "gr"
             }
          ],
          "etapes":[
@@ -446,27 +508,33 @@
          "ingredients":[
             {
                "nom":"Pâte",
-               "quantite":"150g"
+               "quantite":"150",
+               "unite": "gr"
             },
             {
                "nom":"Aubergine",
-               "quantite":"3"
+               "quantite":"3",
+               "unite": "p"
             },
             {
                "nom":"Courgette",
-               "quantite":"5"
+               "quantite":"5",
+               "unite": "p"
             },
             {
                "nom":"Poivon",
-               "quantite":"3"
+               "quantite":"3",
+               "unite": "p"
             },
             {
                "nom":"Beurre",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             },
             {
                "nom":"Huile d'olive",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             }
          ],
          "etapes":[
@@ -489,31 +557,38 @@
          "ingredients":[
             {
                "nom":"Laitue",
-               "quantite":"1"
+               "quantite":"1",
+               "unite": "p"
             },
             {
                "nom":"Thon",
-               "quantite":"3"
+               "quantite":"3",
+               "unite": "p"
             },
             {
                "nom":"Oeuf",
-               "quantite":"3"
+               "quantite":"3",
+               "unite": "p"
             },
             {
                "nom":"Tomates",
-               "quantite":"4"
+               "quantite":"4",
+               "unite": "p"
             },
             {
                "nom":"Poivron",
-               "quantite":"4"
+               "quantite":"4",
+               "unite": "p"
             },
             {
                "nom":"Haricot verts",
-               "quantite":"400g"
+               "quantite":"400",
+               "unite": "gr"
             },
             {
                "nom":"Huile d'olive",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             }
          ],
          "etapes":[
@@ -533,27 +608,33 @@
          "ingredients":[
             {
                "nom":"Mascarpone",
-               "quantite":"250"
+               "quantite":"250",
+               "unite": "gr"
             },
             {
                "nom":"Oeuf",
-               "quantite":"3"
+               "quantite":"3",
+               "unite": "p"
             },
             {
                "nom":"Sucre",
-               "quantite":"80g"
+               "quantite":"80",
+               "unite": "p"
             },
             {
                "nom":"Vanille",
-               "quantite":"1"
+               "quantite":"1",
+               "unite": "p"
             },
             {
                "nom":"Café",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             },
             {
                "nom":"Cacao",
-               "quantite":"10g"
+               "quantite":"10",
+               "unite": "gr"
             }
          ],
          "etapes":[

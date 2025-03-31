@@ -6,7 +6,7 @@ let favoritesRecipes;
 if (localStorage.getItem("favorite") !== null) {
   favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
 } else {
-  favoritesRecipes = allRecipe.slice(3, 8);
+  favoritesRecipes = allRecipe.slice(0, 8);
   localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));
   favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
 }
@@ -94,7 +94,7 @@ const createModal = (index) => {
             ${recette.ingredients
               .map(
                 (ingredient) =>
-                  `<li>${ingredient.nom}: <span>${ingredient.quantite}</span> </li>`
+                  `<li>${ingredient.nom}: <span>${ingredient.quantite}${ingredient.unite}</span> </li>`
               )
               .join("")}
           </ul>

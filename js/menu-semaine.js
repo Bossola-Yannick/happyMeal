@@ -7,8 +7,10 @@ if (localStorage.getItem("recipes-week") !== null) {
   localStorage.setItem("recipes-week", JSON.stringify(recipesWeek));
   recipesWeek = JSON.parse(localStorage.getItem("recipes-week"));
 }
+// console.log(recipesWeek);
 
-console.log(recipesWeek);
+// elements DOM
+const dataBoxes = document.getElementsByClassName("drop-recipe");
 
 // affiche planning
 const showPlanning = () => {
@@ -68,7 +70,6 @@ const showPlanning = () => {
     `;
   });
 };
-
 showPlanning();
 
 // gestion de la liste des recettes
@@ -84,7 +85,7 @@ const recipeTag = () => {
     recipeBox.appendChild(recipeTag);
   });
 
-  // clone l'element et ajoute un evenement drag
+  // clone l'element d'origine sur le planning, change son affichage et ajoute un evenement drag + remove
   let listRecipe = document.getElementsByClassName("tag-recipe");
   for (let recipe of listRecipe) {
     recipe.addEventListener("dragstart", (e) => {
@@ -112,7 +113,6 @@ const recipeTag = () => {
     });
   }
 };
-
 recipeTag();
 
 // drag et drop
@@ -136,28 +136,28 @@ const dropBox = () => {
     });
   }
 };
-
 dropBox();
 
-// recup data du planning
-const dataPlanning = () => {
-  const dataBoxes = document.getElementsByClassName("drop-recipe");
-  const planningData = [];
+// recup data du planning pour local storage shopping liste
+const generateShoppingList = () => {
+  const shoppingList = [];
+
   for (let box of dataBoxes) {
     const recipeName = box.querySelector("p")?.innerText || null;
     if (recipeName) {
       recipesWeek.forEach((recipe) => {
         if (recipeName === recipe.nom) {
-          planningData.push(recipe.ingredients);
+          shoppingList.push(recipe.ingredients);
         }
       });
     }
   }
-  console.log("planning: ", planningData);
-  return planningData;
+  localStorage.setItem("shopping-list", JSON.stringify(shoppingList));
+  return shoppingList;
 };
 
-const buttonPlanning = document.getElementById("get-planning");
-buttonPlanning.addEventListener("click", () => {
-  dataPlanning();
+// generation shopping liste evenement
+const getShoppingList = document.getElementById("get-planning");
+getShoppingList.addEventListener("click", () => {
+  generateShoppingList();
 });

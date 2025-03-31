@@ -379,20 +379,24 @@ select:focus {
     flex-wrap: wrap;
 }
 
-/* .list-fav li {
-    padding: 0.2rem 1.5rem;
-} */
-
-.tag-recipe {
+.recipe {
     width: auto;
     height: 100%;
     padding: 0.2rem 0.5rem;
-    background-color: aqua;
-    border: 1px solid green;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.tag-recipe {
+    background-color: aqua;
+    border: 1px solid green;
     cursor: move;
+}
+
+.saved-recipe {
+    background-color: rgb(122, 201, 122);
+    border: 1px solid rgb(93, 151, 93);
 }
 
 .remove-tag {

@@ -7,7 +7,6 @@ if (localStorage.getItem("recipes-week") !== null) {
   localStorage.setItem("recipes-week", JSON.stringify(recipesWeek));
   recipesWeek = JSON.parse(localStorage.getItem("recipes-week"));
 }
-// console.log(recipesWeek);
 
 // elements DOM
 const dataBoxes = document.getElementsByClassName("drop-recipe");
@@ -77,9 +76,10 @@ let selectRecipe;
 const recipeTag = () => {
   const recipeBox = document.getElementById("list-recipe-box");
 
+  // création des étiquettes des recettes disponible
   recipesWeek.forEach((recipe) => {
     const recipeTag = document.createElement("li");
-    recipeTag.classList.add("tag-recipe");
+    recipeTag.classList.add("tag-recipe", "recipe");
     recipeTag.setAttribute("draggable", "true");
     recipeTag.innerText = recipe.nom;
     recipeBox.appendChild(recipeTag);
@@ -91,7 +91,7 @@ const recipeTag = () => {
     recipe.addEventListener("dragstart", (e) => {
       let recipeTag = e.target.innerText;
       let newElementTag = document.createElement("div");
-      newElementTag.classList.add("tag-recipe");
+      newElementTag.classList.add("tag-recipe", "recipe");
       newElementTag.setAttribute("draggable", "true");
 
       const newElementP = document.createElement("p");
@@ -188,8 +188,7 @@ const fillPlanning = () => {
     if (element) {
       // recréer l'etiquette de la recette
       const newElementTag = document.createElement("div");
-      newElementTag.classList.add("tag-recipe");
-      newElementTag.setAttribute("draggable", "true");
+      newElementTag.classList.add("saved-recipe", "recipe");
 
       const newElementP = document.createElement("p");
       newElementP.innerText = element;
@@ -213,6 +212,7 @@ const fillPlanning = () => {
 const buttonSave = document.getElementById("save-planning");
 buttonSave.addEventListener("click", (e) => {
   savePlanningWeek();
+  fillPlanning();
 });
 
 if (localStorage.getItem("saved-planning") !== null) {

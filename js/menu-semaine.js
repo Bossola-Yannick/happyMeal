@@ -161,3 +161,60 @@ const getShoppingList = document.getElementById("get-planning");
 getShoppingList.addEventListener("click", () => {
   generateShoppingList();
 });
+
+// sauvegarder menu semaine
+const savePlanningWeek = () => {
+  let savePlanning = [];
+  for (let box of dataBoxes) {
+    if (box.children.length === 0) {
+      savePlanning.push(null);
+    } else {
+      const recipeName = box.querySelector("p")?.innerHTML || null;
+      savePlanning.push(recipeName);
+    }
+  }
+  localStorage.setItem("saved-planning", JSON.stringify(savePlanning));
+};
+
+// remplir planning
+const fillPlanning = () => {
+  const planningSaved = JSON.parse(localStorage.getItem("saved-planning"));
+  const boxRecipe = document.getElementsByClassName("drop-recipe");
+  console.log(boxRecipe);
+  planningSaved.forEach((element, index) => {
+    const box = boxRecipe[index];
+    box.innerHTML = "";
+
+    if (element) {
+      // recréer l'etiquette de la recette
+      const newElementTag = document.createElement("div");
+      newElementTag.classList.add("tag-recipe");
+      newElementTag.setAttribute("draggable", "true");
+
+      const newElementP = document.createElement("p");
+      newElementP.innerText = element;
+      newElementTag.appendChild(newElementP);
+
+      const newElementImg = document.createElement("img");
+      newElementImg.setAttribute("src", "../assets/img/icon-remove.png");
+      newElementImg.classList.add("remove-tag");
+      newElementTag.appendChild(newElementImg);
+
+      newElementImg.addEventListener("click", () => {
+        newElementTag.remove();
+      });
+
+      box.appendChild(newElementTag);
+    }
+  });
+};
+
+// événement sauvegarder planning
+const buttonSave = document.getElementById("save-planning");
+buttonSave.addEventListener("click", (e) => {
+  savePlanningWeek();
+});
+
+if (localStorage.getItem("saved-planning") !== null) {
+  fillPlanning();
+}

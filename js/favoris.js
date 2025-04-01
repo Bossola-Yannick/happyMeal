@@ -1,15 +1,16 @@
 // LOCAL STORAGE
 
-// let allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
-// console.log(allRecipe);
-let favoritesRecipes;
-if (localStorage.getItem("favorite") !== null) {
-  favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
-} else {
-  favoritesRecipes = allRecipe.slice(0, 8);
-  localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));
-  favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
-}
+
+allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
+// // console.log(allRecipe);
+let favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
+// if (localStorage.getItem("favorite") !== null) {
+//   favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
+// } else {
+//   favoritesRecipes = allRecipe.slice(3, 8);
+//   localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));
+//   favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
+// }
 
 let recipesWeek;
 
@@ -163,6 +164,7 @@ const showListFav = (categorie) => {
     listFavBox.innerHTML = "";
 
     favoritesRecipes.forEach((recipe) => {
+
       if (categorie === "Liste entière" || recipe.categorie === categorie) {
         const indexRecipe = favoritesRecipes.indexOf(recipe);
 
@@ -193,6 +195,18 @@ const showListFav = (categorie) => {
         // event pour supprimer des favoris
         buttonFav.addEventListener("click", (e) => {
           e.stopPropagation();
+          // CODE YANNICK
+        // suppresion des favoris de la recette dans allRecipe apres récupération de l'index de celle-ci
+        let allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
+
+        let index = allRecipe.findIndex(
+          (u) => u.nom.toLowerCase() === recipe.nom.toLowerCase()
+        );
+        console.log(index);
+
+        delete allRecipe[index].favorite;
+          // Fin code YANNICK
+        localStorage.setItem("all-recipe", JSON.stringify(allRecipe));
           favoritesRecipes.splice(indexRecipe, 1);
           selectOption();
           showListFav("Liste entière");
@@ -218,6 +232,7 @@ const showListFav = (categorie) => {
         const cardTitle = document.createElement("div");
         cardTitle.id = "card-title";
         cardTitle.innerHTML = `
+
           <h3>${recipe.nom}</h3>
           <p>${recipe.categorie}</p>
         `;

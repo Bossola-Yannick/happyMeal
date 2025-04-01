@@ -1,0 +1,40 @@
+/*  HOMEPAGE */
+body {
+  background-color: rgba(238, 231, 231, 0.589);
+}
+main {
+  min-height: 80vh;
+  text-align: center;
+}
+.title-site {
+  padding: 2rem;
+  font-size: 5rem;
+  font-weight: 800;
+}
+.slogan {
+  font-size: 2.5rem;
+  margin: 3rem;
+}
+
+.search-bar {
+  padding: 0.5rem;
+  width: 30%;
+}
+.title-logo {
+  margin: 0 auto;
+  width: 20%;
+}
+.title-img {
+  max-width: 100%;
+}
+
+#resultSearch {
+  width: 30%;
+  margin: 0 auto;
+  text-align: start;
+}
+
+#resultSearch p {
+  cursor: pointer;
+  padding: 0.3rem;
+}

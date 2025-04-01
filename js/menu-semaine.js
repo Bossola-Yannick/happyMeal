@@ -12,6 +12,8 @@ if (localStorage.getItem("recipes-week") !== null) {
 
 // elements DOM
 const dataBoxes = document.getElementsByClassName("drop-recipe");
+const infoMsg = document.getElementById("infoMsg");
+console.log(infoMsg);
 
 // affiche planning
 const showPlanning = () => {
@@ -173,6 +175,15 @@ const generateShoppingList = () => {
 const getShoppingList = document.getElementById("get-shopping-list");
 getShoppingList.addEventListener("click", () => {
   generateShoppingList();
+
+  if (JSON.parse(localStorage.getItem("shopping-list")).length > 0) {
+    infoMsg.classList.add("blueMsg");
+    infoMsg.innerHTML = "Liste de course généré !";
+    setTimeout(() => {
+      infoMsg.innerHTML = "";
+      infoMsg.classList.remove("blueMsg");
+    }, 700);
+  }
 });
 
 // sauvegarder menu semaine
@@ -249,6 +260,14 @@ const buttonSave = document.getElementById("save-planning");
 buttonSave.addEventListener("click", (e) => {
   savePlanningWeek();
   fillPlanning();
+  if (JSON.parse(localStorage.getItem("saved-planning")).length > 0) {
+    infoMsg.classList.add("greenMsg");
+    infoMsg.innerHTML = "Planning sauvegardé !";
+    setTimeout(() => {
+      infoMsg.innerHTML = "";
+      infoMsg.classList.remove("greenMsg");
+    }, 700);
+  }
 });
 
 if (localStorage.getItem("saved-planning") !== null) {
@@ -272,7 +291,6 @@ const scrollEvent = () => {
   const tags = document.getElementsByClassName("tag-recipe");
 
   const positionList = favList.getBoundingClientRect();
-  console.log(positionList);
 
   const containerHeight = favList.offsetHeight;
 
@@ -280,7 +298,7 @@ const scrollEvent = () => {
     const scrolledValue = window.scrollY;
 
     // console.log(containerHeight);
-    console.log(scrolledValue);
+    // console.log(scrolledValue);
 
     if (scrolledValue > positionList.y) {
       // container liste

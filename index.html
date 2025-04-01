@@ -3,8 +3,69 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <script src="./js/script.js" defer></script>
+    <title>G'LaPatate</title>
+    <!-- Jquery -->
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      defer
+    ></script>
+    <script src="./js/script.js"></script>
+    <script src="./js/card.js" defer></script>
+    <script src="./js/index.js" defer></script>
+    <script src="./js/search.js" defer></script>
+    <script src="./js/add-remove-favorite.js" defer></script>
+    <link rel="stylesheet" href="./style/reset.css" />
+    <link rel="stylesheet" href="./style/header-footer.css" />
+    <link rel="stylesheet" href="./style/index.css" />
+    <link rel="stylesheet" href="./style/card.css" />
   </head>
-  <body></body>
+  <body>
+    <header class="header-bar">
+      <div id="container-logo">
+        <a href="./index.html">
+          <img
+            src="./assets/img/GLaPatate-detourer.png"
+            alt="logo de g la patate"
+            class="logo"
+          />
+        </a>
+      </div>
+      <div id="container-nav">
+        <nav id="nav-bar">
+          <ul id="nav-bar-list">
+            <li class="nav-bar-item">
+              <a href="./pages/allRecipe.html">Recettes</a>
+            </li>
+            <li class="nav-bar-item"><a href="./pages/favoris.html">Favoris</a></li>
+            <li class="nav-bar-item"><a href="#">Menu</a></li>
+            <li class="nav-bar-item"><a href="#">Liste Courses</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="title-logo">
+        <img
+          src="./assets/img/GLaPatate-detourer.png"
+          alt=""
+          class="title-img"
+        />
+      </div>
+      <p class="slogan">Avec nos recettes vous aurez la Patate</p>
+      <div class="container-search-bar">
+        <input
+          type="text"
+          placeholder="Rechercher une recette"
+          class="search-bar"
+          id="search"
+        />
+        <div id="resultSearch"></div>
+     
+
+      <section id="container-card">
+        <!-- Insertion des cartes ICI  -->
+      </section>
+    </main>
+    <footer><h6 class="copyrigth">&#169; BY Orkblan</h6></footer>
+  </body>
 </html>

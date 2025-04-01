@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="../assets/img/icon-fav.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.7.1.js" defer></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js" defer></script>
+    <script src="../js/script.js" defer></script>
+    <script src="../js/modal-planning.js" defer></script>
+    <script src="../js/menu-semaine.js" defer></script>
+    <link rel="stylesheet" href="../style/reset.css" />
+    <link rel="stylesheet" href="../style/header-footer.css" />
+    <link rel="stylesheet" href="../style/styleJames.css" />
+    <title>Menu semaine</title>
+  </head>
+  <body>
+    <header class="header-bar">
+      <div id="container-logo">
+        <a href="../index.html">
+          <img
+            src="../assets/img/GLaPatate-detourer.png"
+            alt="logo de g la patate"
+            class="logo" />
+        </a>
+      </div>
+      <div id="container-nav">
+        <nav id="nav-bar">
+          <ul id="nav-bar-list">
+            <li class="nav-bar-item">
+              <a href="../pages/allRecipe.html">Recettes</a>
+            </li>
+            <li class="nav-bar-item">
+              <a href="../pages/favoris.html">Favoris</a>
+            </li>
+            <li class="nav-bar-item">
+              <a href="../pages/menu-semaine.html">Menu</a>
+            </li>
+            <li class="nav-bar-item"><a href="#">Liste Courses</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="main-james">
+      <div class="buttons-planning">
+        <button
+          id="get-shopping-list"
+          name="button-shopping"
+          class="button-shopping">
+          Génèrer la liste de courses
+        </button>
+        <div class="edit-planning">
+          <button id="save-planning" name="button-save" class="button-save">
+            Sauvegarder le planning
+          </button>
+          <button id="reset-planning" name="button-reset" class="button-reset">
+            Réinitialiser le planning
+          </button>
+        </div>
+      </div>
+      <hr class="separator" />
+      <div id="container-fav-list" class="box-all-favorite">
+        <ul id="list-recipe-box" class="list-fav"></ul>
+      </div>
+      <div id="week-day-container" class="week-day-container"></div>
+      <div id="overlay" class="overlay-modal"></div>
+      <div id="modal" class="modal scroller"></div>
+    </main>
+    <footer><h6 class="copyrigth">&#169; BY Orkblan</h6></footer>
+  </body>
+</html>

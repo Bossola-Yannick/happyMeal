@@ -14,6 +14,25 @@ if (localStorage.getItem("recipes-week") !== null) {
 const dataBoxes = document.getElementsByClassName("drop-recipe");
 const infoMsg = document.getElementById("infoMsg");
 
+// bouton bas de page pour scroll to top
+const noFitAll = window.matchMedia("(max-width: 1340px)");
+const buttonBottom = document.getElementById("bottom-button");
+
+console.log(noFitAll.matches);
+
+if (noFitAll.matches) {
+  buttonBottom.style.display = "flex";
+  buttonBottom.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  });
+} else {
+  buttonBottom.style.display = "none";
+}
+
 // affiche planning
 const showPlanning = () => {
   const weekDay = [
@@ -233,6 +252,7 @@ const fillPlanning = () => {
             index = allRecipe.indexOf(recipe);
           }
         });
+        window.scrollTo(0, 0);
         openModal();
         createModal(index);
       });
@@ -325,23 +345,3 @@ const scrollEvent = () => {
 };
 
 scrollEvent();
-
-// bouton bas de page pour scroll to top
-const noFitAll = window.matchMedia("(max-width: 1340px)");
-// const noFitAll = window.matchMedia("(max-width: 780px)");
-const buttonBottom = document.getElementById("bottom-button");
-
-console.log(noFitAll.matches);
-
-if (noFitAll.matches) {
-  buttonBottom.style.display = "flex";
-  buttonBottom.addEventListener("click", () => {
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
-  });
-} else {
-  buttonBottom.style.display = "none";
-}

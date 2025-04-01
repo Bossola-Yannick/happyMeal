@@ -191,6 +191,7 @@ const showListFav = (categorie) => {
         buttonFav.id = "remove";
         buttonFav.classList.add("button-fav-remove");
         buttonFav.setAttribute("value", indexRecipe);
+        buttonFav.setAttribute("alt", "remove from favoris");
 
         // event pour supprimer des favoris
         buttonFav.addEventListener("click", (e) => {

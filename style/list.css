@@ -9,7 +9,7 @@ main {
   font-size: 2.5rem;
   padding: 2rem;
 }
-.containerList {
+.container-list {
   display: flex;
   justify-content: space-around;
 }
@@ -88,10 +88,18 @@ main {
   .title-list,
   .buttonPrint,
   .buttonDeletePrint,
-  footer {
+  footer,
+  .delete-item {
     display: none;
   }
   body {
     background: none;
+  }
+  .sheet {
+    width: 70%;
+  }
+  .list-item {
+    width: 45%;
+    font-size: 1rem;
   }
 }

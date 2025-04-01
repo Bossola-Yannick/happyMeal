@@ -1,8 +1,7 @@
 // LOCAL STORAGE
 
-
 allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
-// // console.log(allRecipe);
+// console.log(allRecipe);
 let favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
 // if (localStorage.getItem("favorite") !== null) {
 //   favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
@@ -164,7 +163,6 @@ const showListFav = (categorie) => {
     listFavBox.innerHTML = "";
 
     favoritesRecipes.forEach((recipe) => {
-
       if (categorie === "Liste entière" || recipe.categorie === categorie) {
         const indexRecipe = favoritesRecipes.indexOf(recipe);
 
@@ -196,17 +194,17 @@ const showListFav = (categorie) => {
         buttonFav.addEventListener("click", (e) => {
           e.stopPropagation();
           // CODE YANNICK
-        // suppresion des favoris de la recette dans allRecipe apres récupération de l'index de celle-ci
-        let allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
+          // suppresion des favoris de la recette dans allRecipe apres récupération de l'index de celle-ci
+          let allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
 
-        let index = allRecipe.findIndex(
-          (u) => u.nom.toLowerCase() === recipe.nom.toLowerCase()
-        );
-        console.log(index);
+          let index = allRecipe.findIndex(
+            (u) => u.nom.toLowerCase() === recipe.nom.toLowerCase()
+          );
+          console.log(index);
 
-        delete allRecipe[index].favorite;
+          delete allRecipe[index].favorite;
           // Fin code YANNICK
-        localStorage.setItem("all-recipe", JSON.stringify(allRecipe));
+          localStorage.setItem("all-recipe", JSON.stringify(allRecipe));
           favoritesRecipes.splice(indexRecipe, 1);
           selectOption();
           showListFav("Liste entière");

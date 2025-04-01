@@ -84,6 +84,16 @@ const recipeTag = () => {
     const recipeTag = document.createElement("li");
     recipeTag.classList.add("tag-recipe", "recipe");
     recipeTag.setAttribute("draggable", "true");
+
+    //couleur bg cards selon categorie
+    if (recipe.categorie === "Entrée") {
+      recipeTag.classList.add("starter");
+    } else if (recipe.categorie === "Plat principal") {
+      recipeTag.classList.add("dish");
+    } else if (recipe.categorie === "Dessert") {
+      recipeTag.classList.add("dessert");
+    }
+
     recipeTag.innerText = recipe.nom;
     recipeBox.appendChild(recipeTag);
   });
@@ -255,7 +265,7 @@ buttonReset.addEventListener("click", () => {
   }
 });
 
-// evenement scroll (media queries)
+// evenement scroll
 const scrollEvent = () => {
   const favList = document.getElementById("container-fav-list");
   const planning = document.getElementById("week-day-container");
@@ -273,12 +283,8 @@ const scrollEvent = () => {
     console.log(scrolledValue);
 
     if (scrolledValue > positionList.y) {
-      for (let tag of tags) {
-        tag.classList.add("tag-bg");
-      }
-
       // container liste
-      favList.style.backgroundColor = "#00000034";
+      favList.style.backgroundColor = "#F5F1F1d2";
       favList.style.position = "fixed";
       favList.style.top = "0";
       favList.style.zIndex = "15";
@@ -287,10 +293,6 @@ const scrollEvent = () => {
       planning.style.transition = "none";
       planning.style.marginTop = `${containerHeight + 16}px`;
     } else {
-      for (let tag of tags) {
-        tag.classList.remove("tag-bg");
-      }
-
       favList.style.backgroundColor = "transparent";
       favList.style.position = "static";
       favList.style.zIndex = "0";
@@ -302,3 +304,6 @@ const scrollEvent = () => {
 };
 
 scrollEvent();
+
+const isMobile = window.matchMedia("(max-width: 1080px)");
+console.log(isMobile);

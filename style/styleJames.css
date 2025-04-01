@@ -2,7 +2,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Roboto", sans-serif;
+}
+
+header, footer {
+    box-sizing: content-box;
 }
 
 body {
@@ -12,10 +15,6 @@ body {
 .no-scroll {
     overflow: hidden;
   }
-
-nav ul {
-    list-style: none;
-}
 
 .main-james {
     min-height: 80vh;

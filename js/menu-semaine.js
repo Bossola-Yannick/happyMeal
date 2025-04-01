@@ -254,3 +254,51 @@ buttonReset.addEventListener("click", () => {
     box.innerHTML = "";
   }
 });
+
+// evenement scroll (media queries)
+const scrollEvent = () => {
+  const favList = document.getElementById("container-fav-list");
+  const planning = document.getElementById("week-day-container");
+  const tags = document.getElementsByClassName("tag-recipe");
+
+  const positionList = favList.getBoundingClientRect();
+  console.log(positionList);
+
+  const containerHeight = favList.offsetHeight;
+
+  document.addEventListener("scroll", (e) => {
+    const scrolledValue = window.scrollY;
+
+    // console.log(containerHeight);
+    console.log(scrolledValue);
+
+    if (scrolledValue > positionList.y) {
+      for (let tag of tags) {
+        tag.classList.add("tag-bg");
+      }
+
+      // container liste
+      favList.style.backgroundColor = "#00000034";
+      favList.style.position = "fixed";
+      favList.style.top = "0";
+      favList.style.zIndex = "15";
+
+      // planning decallage
+      planning.style.transition = "none";
+      planning.style.marginTop = `${containerHeight + 16}px`;
+    } else {
+      for (let tag of tags) {
+        tag.classList.remove("tag-bg");
+      }
+
+      favList.style.backgroundColor = "transparent";
+      favList.style.position = "static";
+      favList.style.zIndex = "0";
+      favList.style.transition = "position 0.6ms ease-in-out";
+
+      planning.style.marginTop = "0";
+    }
+  });
+};
+
+scrollEvent();

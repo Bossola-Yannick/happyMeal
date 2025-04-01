@@ -393,12 +393,13 @@ select:focus {
 }
 
 .edit-planning {
-    width: 35%;
+    max-width: 35%;
     height: auto;
     display: flex;
     justify-content: space-between;
     align-items: stretch;
     gap: 3rem;
+    flex:1;
 }
 
 .button-save,
@@ -463,11 +464,31 @@ select:focus {
     margin: 0 auto;
 }
 
+.object-page {
+    width: 100%;
+}
+
+.infoMsg {
+    margin-top: 0.5rem;
+    text-align: center;
+    min-height: 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.greenMsg {
+    color: rgb(3, 165, 3);
+}
+
+.blueMsg {
+    color: blue;
+}
+
 .separator {
     color: #22243b;
     background-color: #E9E4E4;
     width: 60%;
-    margin: 2rem auto 1rem;
+    margin: 1rem auto;
     height: 0.2rem;
     border: none;
 }
@@ -621,8 +642,29 @@ select:focus {
     gap: 1.2rem;
 }
 
+.bottom-button {
+    width: 100%;
+    display: none;
+    justify-content: right;
+    padding-right: 2rem;
+}
 
-/* media queries modal */
+.button-top-scroll {
+    
+    width: 4rem;
+    height: 4rem;
+    background-color: transparent;
+    background-image: url(../assets/img/icon-top.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    object-fit: contain;
+    border-radius: 100%;
+    border: none;   
+    cursor: pointer;
+}
+
+
+/* media queries */
 
 @media screen and (max-width:980px) {
     .modal {
@@ -673,5 +715,10 @@ select:focus {
     }
     .drop-recipe {
         min-height: 2rem;
+    }
+
+    .bottom-button {
+        justify-content: center;
+        padding-right: 0;
     }
 }

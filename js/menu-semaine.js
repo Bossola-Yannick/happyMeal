@@ -323,5 +323,18 @@ const scrollEvent = () => {
 
 scrollEvent();
 
-const isMobile = window.matchMedia("(max-width: 1080px)");
-console.log(isMobile);
+const noFitAll = window.matchMedia("(max-width: 1340px)");
+console.log(noFitAll);
+
+if (noFitAll) {
+  console.log("coucou");
+  const buttonBottom = document.getElementById("bottom-button");
+  buttonBottom.style.display = "flex";
+  buttonBottom.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  });
+}

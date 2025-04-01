@@ -650,7 +650,6 @@ select:focus {
 }
 
 .button-top-scroll {
-    
     width: 4rem;
     height: 4rem;
     background-color: transparent;
@@ -667,6 +666,15 @@ select:focus {
 /* media queries */
 
 @media screen and (max-width:980px) {
+    
+    .button-shopping:hover,
+    .button-save:hover,
+    .button-reset:hover {
+        font-weight: normal; 
+        transform: none; 
+        box-shadow: none; 
+    }
+
     .modal {
         height: 100vh;
     }
@@ -677,14 +685,26 @@ select:focus {
 
 @media screen and (max-width: 780px) {
 
+    .infoMsg {
+        min-height: 1.2rem;
+        font-size: 1rem;
+    }
+
     .buttons-planning {
+        width: 100%;
+        flex-direction: column;
         padding: 0;
         justify-content: center;
+        gap: 1rem;
     }
     .edit-planning {
-        width: auto;
+        max-width: 90%;
+        width: 100%;
         flex-direction: column;
-        gap: 2rem;
+        gap: 1rem;
+    }
+    .button-shopping {
+        width: 90%;
     }
     .list-fav {
         font-size: 1rem;

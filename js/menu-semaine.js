@@ -13,7 +13,6 @@ if (localStorage.getItem("recipes-week") !== null) {
 // elements DOM
 const dataBoxes = document.getElementsByClassName("drop-recipe");
 const infoMsg = document.getElementById("infoMsg");
-console.log(infoMsg);
 
 // affiche planning
 const showPlanning = () => {
@@ -260,7 +259,11 @@ const buttonSave = document.getElementById("save-planning");
 buttonSave.addEventListener("click", (e) => {
   savePlanningWeek();
   fillPlanning();
-  if (JSON.parse(localStorage.getItem("saved-planning")).length > 0) {
+
+  const savedPlanning = JSON.parse(localStorage.getItem("saved-planning"));
+  const recipeIn = savedPlanning.some((recipe) => recipe !== null);
+
+  if (recipeIn) {
     infoMsg.classList.add("greenMsg");
     infoMsg.innerHTML = "Planning sauvegardé !";
     setTimeout(() => {
@@ -323,12 +326,14 @@ const scrollEvent = () => {
 
 scrollEvent();
 
+// bouton bas de page pour scroll to top
 const noFitAll = window.matchMedia("(max-width: 1340px)");
-console.log(noFitAll);
+// const noFitAll = window.matchMedia("(max-width: 780px)");
+const buttonBottom = document.getElementById("bottom-button");
 
-if (noFitAll) {
-  console.log("coucou");
-  const buttonBottom = document.getElementById("bottom-button");
+console.log(noFitAll.matches);
+
+if (noFitAll.matches) {
   buttonBottom.style.display = "flex";
   buttonBottom.addEventListener("click", () => {
     window.scrollTo({
@@ -337,4 +342,6 @@ if (noFitAll) {
       behavior: "smooth",
     });
   });
+} else {
+  buttonBottom.style.display = "none";
 }

@@ -158,6 +158,7 @@ const createModal = (index) => {
 
 // affiche la liste des recipes favorites
 const showListFav = (categorie) => {
+  const titlePage = document.getElementById("title-favorite");
   // affichage liste
   const count = countRecipesByCategory(categorie);
 
@@ -263,6 +264,7 @@ const showListFav = (categorie) => {
       }
     });
   } else {
+    titlePage.style.display = "none";
     listFavBox.innerHTML = `
     <div class="empty-list">
       <h3 class="msg-info">Oops, on dirait bien que cette liste est vide</h3>

@@ -726,6 +726,17 @@ select:focus {
     cursor: pointer;
 }
 
+/*  */
+/*  */
+
+.button-select {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*  */
+/*  */
 
 /* media queries */
 

@@ -117,9 +117,7 @@ select:focus {
     cursor: pointer;
     transition: 0.2s all ease-in-out;
     border-radius: 100%;
-    /* filter: drop-shadow(0.2rem 0.1rem 0.5rem rgb(0, 0, 0)) */
-    
-    
+    /* filter: drop-shadow(0.2rem 0.1rem 0.5rem rgb(0, 0, 0)) */  
 }
 
 .button-fav-remove:hover {
@@ -139,13 +137,20 @@ select:focus {
     width: 100%;
     min-width: 20rem;
     max-width: 25rem;
-    cursor: pointer;
     display: flex;
     flex-direction: column;
-    gap: 1.3rem;
+    justify-content: space-between;
+    gap: 2.5rem;
     border-radius: 4px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     flex: 1;
+}
+
+.sub-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    cursor: pointer;
 }
 
 #card-title,
@@ -160,6 +165,7 @@ select:focus {
     padding: 0 1.5rem;
     justify-content: space-between;
     align-items: center;
+    gap: 1rem;
 }
 
 #card-title h3 {
@@ -184,13 +190,31 @@ select:focus {
     box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
-#card-footer {
+.card-desc-two {
+    display: flex;
     justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+#card-footer {
+    margin: 0 1.2rem;
+    justify-content: space-between;
     align-items: center;
     padding-bottom: 1rem;
     gap: 0.5rem;
+    cursor: default;
 }
 
+.button-action {
+    background-color: transparent;
+    border: none;
+}
+
+.button-action img {
+    width: 1.8rem;
+    cursor: pointer;
+}
 
 /* modal style */
 .overlay-modal {
@@ -298,7 +322,7 @@ select:focus {
 }
 
 .cook-time img,
-#card-footer img {
+.card-desc-two img {
     width: 1.3rem;
 }
 

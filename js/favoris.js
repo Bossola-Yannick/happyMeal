@@ -2,14 +2,14 @@
 
 allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
 // // console.log(allRecipe);
-let favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
-// if (localStorage.getItem("favorite") !== null) {
-//   favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
-// } else {
-//   favoritesRecipes = allRecipe.slice(3, 8);
-//   localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));
-//   favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
-// }
+// let favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
+if (localStorage.getItem("favorite") !== null) {
+  favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
+} else {
+  favoritesRecipes = [];
+  localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));
+  favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
+}
 
 let recipesWeek;
 
@@ -191,7 +191,6 @@ const showListFav = (categorie) => {
         buttonFav.id = "remove";
         buttonFav.classList.add("button-fav-remove");
         buttonFav.setAttribute("value", indexRecipe);
-        buttonFav.setAttribute("alt", "remove from favoris");
 
         // event pour supprimer des favoris
         buttonFav.addEventListener("click", (e) => {

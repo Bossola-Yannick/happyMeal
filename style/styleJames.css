@@ -51,16 +51,19 @@ body {
 }
 
 select {
-    background-color: rgba(230, 224, 224, 0.74);
     width: 10rem;
     padding: 0.5rem 0;
     border-radius: 4px;
     text-align: center;
-    border: 2px solid  rgba(222, 216, 216, 0.74) ;
     cursor: pointer;
 }
 
-select:focus {
+.select-favorite {
+    background-color: rgba(230, 224, 224, 0.74);
+    border: 2px solid  rgba(222, 216, 216, 0.74) ;
+}
+
+.select-favorite:focus {
     border: 2px solid rgba(156, 151, 151, 0.74);
     outline: none;
 }

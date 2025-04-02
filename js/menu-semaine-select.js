@@ -114,6 +114,7 @@ const showPlanning = () => {
 };
 showPlanning();
 
+// remplissage des selects avec les recettes recipes-week
 const selectButton = () => {
   const selectStarter = document.getElementsByClassName("category-starter");
   const selectDish = document.getElementsByClassName("category-dish");
@@ -123,6 +124,7 @@ const selectButton = () => {
     const index = recipesWeek.indexOf(recipe);
     if (recipe.categorie === "Entrée") {
       for (let select of selectStarter) {
+        select.classList.add("starter");
         const option = document.createElement("option");
         option.innerHTML = `${recipe.nom}`;
         option.classList.add("option-select");
@@ -131,6 +133,7 @@ const selectButton = () => {
       }
     } else if (recipe.categorie === "Plat principal") {
       for (let select of selectDish) {
+        select.classList.add("dish");
         const option = document.createElement("option");
         option.innerHTML = `${recipe.nom}`;
         option.classList.add("option-select");
@@ -139,6 +142,7 @@ const selectButton = () => {
       }
     } else {
       for (let select of selectDessert) {
+        select.classList.add("dessert");
         const option = document.createElement("option");
         option.innerHTML = `${recipe.nom}`;
         option.classList.add("option-select");
@@ -148,5 +152,4 @@ const selectButton = () => {
     }
   });
 };
-
 selectButton();

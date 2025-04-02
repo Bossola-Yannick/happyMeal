@@ -163,6 +163,7 @@ const showListFav = (categorie) => {
   const count = countRecipesByCategory(categorie);
 
   if (count > 0 && favoritesRecipes.length > 0) {
+    titlePage.style.display = "flex";
     listFavBox.innerHTML = "";
 
     favoritesRecipes.forEach((recipe) => {

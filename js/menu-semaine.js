@@ -293,6 +293,7 @@ buttonSave.addEventListener("click", (e) => {
   }
 });
 
+// rempli planning si sauvegarde
 if (localStorage.getItem("saved-planning") !== null) {
   fillPlanning();
 }

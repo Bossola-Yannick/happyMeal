@@ -10,6 +10,12 @@ if (localStorage.getItem("recipes-week") !== null) {
   recipesWeek = JSON.parse(localStorage.getItem("recipes-week"));
 }
 
+// elements DOM
+const savedRecipe = document.getElementsByClassName("saved-recipe");
+const selectAll = document.getElementsByClassName("button-select");
+const selectTextContent = document.getElementsByName("category");
+const infoMsg = document.getElementById("infoMsg");
+
 const containerFav = document.getElementById("container-fav-list");
 containerFav.style.display = "none";
 
@@ -164,10 +170,9 @@ const selectButton = () => {
 selectButton();
 
 // sauvegarde planning
-const selectAll = document.getElementsByName("category");
 const savePlanning = () => {
   let savedPlanning = [];
-  for (let select of selectAll) {
+  for (let select of selectTextContent) {
     console.log(select.value);
     if (select.value === "--Choix--") {
       savedPlanning.push(null);
@@ -182,11 +187,9 @@ const savePlanning = () => {
 // remplir planning
 const fillPlanningP = () => {
   const savedPlanning = JSON.parse(localStorage.getItem("saved-planning"));
-  const savedRecipe = document.getElementsByClassName("saved-recipe");
-  const select = document.getElementsByClassName("button-select");
 
   savedPlanning.forEach((element, index) => {
-    const selectBox = select[index];
+    const selectBox = selectAll[index];
     const box = savedRecipe[index];
     box.innerHTML = "";
 
@@ -266,11 +269,63 @@ if (localStorage.getItem("saved-planning") !== null) {
   fillPlanningP();
 }
 
-// P:
-// si supprimer => supprimer de la sauvegarde et reaffiche le select (remettre box?)
+// bouton reset
+const buttonReset = document.getElementById("reset-planning");
+buttonReset.addEventListener("click", () => {
+  localStorage.removeItem("saved-planning");
+  localStorage.removeItem("shopping-list");
+  for (let box of savedRecipe) {
+    box.innerHTML = "";
+    box.classList.remove("recipe");
+  }
+  for (let select of selectAll) {
+    select.style.display = "block";
+    const selectElement = select.querySelector("select");
+    if (selectElement) {
+      selectElement.value = "--Choix--";
+    }
+  }
+});
 
-// GENERATION LISTE DE COURSES:
-// si sauvegarde => possibilité de générer la liste de courses
+// recup data du planning pour local storage shopping liste
+const generateShoppingList = () => {
+  const savedPlanning = JSON.parse(localStorage.getItem("saved-planning"));
+  const shoppingList = [];
 
-// REINITIALISER LE PLANNING:
-// supprime les p et les remplace par des selects
+  for (let recipeSaved of savedPlanning) {
+    if (recipeSaved) {
+      console.log(recipeSaved);
+      recipesWeek.forEach((recipe) => {
+        if (recipeSaved === recipe.nom) {
+          shoppingList.push(recipe.ingredients);
+        }
+      });
+    }
+  }
+  localStorage.setItem("shopping-list", JSON.stringify(shoppingList));
+  return shoppingList;
+};
+
+// generation shopping liste evenement
+const getShoppingList = document.getElementById("get-shopping-list");
+getShoppingList.addEventListener("click", () => {
+  if (localStorage.getItem("saved-planning") !== null) {
+    generateShoppingList();
+    if (JSON.parse(localStorage.getItem("shopping-list")).length > 0) {
+      infoMsg.classList.add("blueMsg");
+      infoMsg.innerHTML = "Liste de course généré !";
+      setTimeout(() => {
+        infoMsg.innerHTML = "";
+        infoMsg.classList.remove("blueMsg");
+      }, 700);
+    }
+  } else {
+    infoMsg.classList.add("blueMsg");
+    infoMsg.innerHTML =
+      "Sauvegarder le planning pour générer une liste de course !";
+    setTimeout(() => {
+      infoMsg.innerHTML = "";
+      infoMsg.classList.remove("blueMsg");
+    }, 2000);
+  }
+});

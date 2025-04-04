@@ -13,6 +13,7 @@
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
       defer></script>
     <script src="../js/script.js" defer></script>
+    <script src="../js/nav-bar.js" defer></script>
     <script src="../js/card.js" defer></script>
     <script src="../js/allRecipe.js" defer></script>
     <script src="../js/add-remove-favorite.js" defer></script>
@@ -22,7 +23,7 @@
     <link rel="stylesheet" href="../style/card.css" />
   </head>
   <body>
-    <header class="header-bar">
+    <header id="header-bar" class="header-bar">
       <div id="container-logo">
         <a href="../index.html">
           <img
@@ -48,6 +49,9 @@
             </li>
           </ul>
         </nav>
+      </div>
+      <div id="burger" class="burger">
+        <img src="../assets/img/icon-burger.png" class="burger-logo" />
       </div>
     </header>
     <main>

@@ -3,14 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="../assets/img/GLaPatate-detourer.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="../assets/img/GLaPatate-detourer.png" />
     <title>G'LaPatate</title>
     <!-- Jquery -->
     <script
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-      defer
-    ></script>
+      defer></script>
     <script src="./js/script.js"></script>
+    <script src="../js/nav-bar.js" defer></script>
     <script src="./js/card.js" defer></script>
     <script src="./js/index.js" defer></script>
     <script src="./js/search.js" defer></script>
@@ -21,14 +24,13 @@
     <link rel="stylesheet" href="./style/card.css" />
   </head>
   <body>
-    <header class="header-bar">
+    <header id="header-bar" class="header-bar">
       <div id="container-logo">
         <a href="./index.html">
           <img
             src="./assets/img/GLaPatate-detourer.png"
             alt="logo de g la patate"
-            class="logo"
-          />
+            class="logo" />
         </a>
       </div>
       <div id="container-nav">
@@ -37,11 +39,20 @@
             <li class="nav-bar-item">
               <a href="./pages/allRecipe.html">Recettes</a>
             </li>
-            <li class="nav-bar-item"><a href="./pages/favoris.html">Favoris</a></li>
-            <li class="nav-bar-item"><a href="./pages/menu-semaine.html">Menu</a></li>
-            <li class="nav-bar-item"><a href="./pages/list.html">Liste Courses</a></li>
+            <li class="nav-bar-item">
+              <a href="./pages/favoris.html">Favoris</a>
+            </li>
+            <li class="nav-bar-item">
+              <a href="./pages/menu-semaine.html">Menu</a>
+            </li>
+            <li class="nav-bar-item">
+              <a href="./pages/list.html">Liste Courses</a>
+            </li>
           </ul>
         </nav>
+      </div>
+      <div id="burger" class="burger">
+        <img src="../assets/img/icon-burger.png" class="burger-logo" />
       </div>
     </header>
     <main>
@@ -49,8 +60,7 @@
         <img
           src="./assets/img/GLaPatate-detourer.png"
           alt=""
-          class="title-img"
-        />
+          class="title-img" />
       </div>
       <p class="slogan">Avec nos recettes vous aurez la Patate</p>
       <div class="container-search-bar">
@@ -58,11 +68,9 @@
           type="text"
           placeholder="Rechercher une recette"
           class="search-bar"
-          id="search"
-        />
+          id="search" />
         <div id="resultSearch"></div>
-     
-
+      </div>
       <section id="container-card">
         <!-- Insertion des cartes ICI  -->
       </section>

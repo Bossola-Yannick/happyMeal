@@ -594,7 +594,7 @@ select {
 }
 
 .saved-recipe {
-    width: 95%;
+    width: 100%;
     background-color: #108a4175;
     color: #062d16cf;
     display: flex;
@@ -760,6 +760,12 @@ select {
 
 }
 
+@media screen and (max-width: 1360px) {
+    .saved-recipe {
+        width: 95%;
+    }
+}
+
 @media screen and (max-width:980px) {
     
     .button-shopping:hover,
@@ -867,4 +873,5 @@ select {
     .saved-recipe {
         font-size: 1.2rem;
     }
+    
 }

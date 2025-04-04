@@ -459,7 +459,7 @@ if (noFitAll.matches) {
         if (selectRecipe) {
           box.innerHTML = "";
           box.appendChild(selectRecipe);
-          selectRecipe.style.backgroundColor = "#beca0f75";
+          selectRecipe.style.backgroundColor = "#b781485d";
           selectRecipe.addEventListener("dragstart", (e) => {
             selectRecipe = e.target;
           });

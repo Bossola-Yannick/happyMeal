@@ -68,6 +68,10 @@ footer {
   padding: 1rem;
 }
 
+.small-james {
+  font-size: 0.6rem;
+}
+
 @media screen and (max-width:930px) {
 
     #container-nav {

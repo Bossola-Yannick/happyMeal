@@ -7,6 +7,7 @@ const openModal = () => {
 
   overlay.style.display = "block";
   modal.style.display = "flex";
+  document.body.classList.add("no-scroll");
 };
 
 // ferme la modale
@@ -16,6 +17,7 @@ const closeModal = () => {
 
   overlay.style.display = "none";
   modal.style.display = "none";
+  document.body.classList.remove("no-scroll");
 };
 
 // creer la modale avec les infos de la recette selectionnée

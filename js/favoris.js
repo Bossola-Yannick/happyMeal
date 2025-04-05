@@ -1,16 +1,15 @@
 // LOCAL STORAGE
 
-
 allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
 // // console.log(allRecipe);
-let favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
-// if (localStorage.getItem("favorite") !== null) {
-//   favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
-// } else {
-//   favoritesRecipes = allRecipe.slice(3, 8);
-//   localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));
-//   favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
-// }
+// let favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
+if (localStorage.getItem("favorite") !== null) {
+  favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
+} else {
+  favoritesRecipes = [];
+  localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));
+  favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
+}
 
 let recipesWeek;
 
@@ -52,6 +51,7 @@ const openModal = () => {
 
   overlay.style.display = "block";
   modal.style.display = "flex";
+  document.body.classList.add("no-scroll");
 };
 
 // ferme la modale
@@ -61,6 +61,7 @@ const closeModal = () => {
 
   overlay.style.display = "none";
   modal.style.display = "none";
+  document.body.classList.remove("no-scroll");
 };
 
 // creer la modale avec les infos de la recette selectionnée
@@ -150,26 +151,32 @@ const createModal = (index) => {
 
   // event fermeture modale
   const modalClose = document.getElementById("modal-close");
-  modalClose.addEventListener("click", (e) => {
+  modalClose.addEventListener("click", () => {
     closeModal();
   });
 };
 
 // affiche la liste des recipes favorites
 const showListFav = (categorie) => {
+  const titlePage = document.getElementById("title-favorite");
   // affichage liste
   const count = countRecipesByCategory(categorie);
 
   if (count > 0 && favoritesRecipes.length > 0) {
+    titlePage.style.display = "flex";
     listFavBox.innerHTML = "";
 
     favoritesRecipes.forEach((recipe) => {
+      const exists = recipesWeek.some(
+        (recipWeek) =>
+          recipWeek.nom === recipe.nom &&
+          recipWeek.categorie === recipe.categorie
+      );
 
       if (categorie === "Liste entière" || recipe.categorie === categorie) {
         const indexRecipe = favoritesRecipes.indexOf(recipe);
 
         // boite recette
-        // sous boite de chaque recette
         const card = document.createElement("div");
         card.id = "card-box";
         card.classList.add("card-box");
@@ -184,6 +191,10 @@ const showListFav = (categorie) => {
           card.classList.add("dessert");
         }
 
+        // sous boite
+        const subCard = document.createElement("div");
+        subCard.classList.add("sub-card");
+
         // ajoute le bouton retirer favoris
         const cardButton = document.createElement("div");
         cardButton.id = "card-button";
@@ -196,17 +207,17 @@ const showListFav = (categorie) => {
         buttonFav.addEventListener("click", (e) => {
           e.stopPropagation();
           // CODE YANNICK
-        // suppresion des favoris de la recette dans allRecipe apres récupération de l'index de celle-ci
-        let allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
+          // suppresion des favoris de la recette dans allRecipe apres récupération de l'index de celle-ci
+          let allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
 
-        let index = allRecipe.findIndex(
-          (u) => u.nom.toLowerCase() === recipe.nom.toLowerCase()
-        );
-        console.log(index);
+          let index = allRecipe.findIndex(
+            (u) => u.nom.toLowerCase() === recipe.nom.toLowerCase()
+          );
+          console.log(index);
 
-        delete allRecipe[index].favorite;
+          delete allRecipe[index].favorite;
           // Fin code YANNICK
-        localStorage.setItem("all-recipe", JSON.stringify(allRecipe));
+          localStorage.setItem("all-recipe", JSON.stringify(allRecipe));
           favoritesRecipes.splice(indexRecipe, 1);
           selectOption();
           showListFav("Liste entière");
@@ -214,10 +225,10 @@ const showListFav = (categorie) => {
         });
 
         cardButton.appendChild(buttonFav);
-        card.appendChild(cardButton);
+        // card.appendChild(cardButton);
 
         // event pour afficher la modale de la recette
-        card.addEventListener("click", () => {
+        subCard.addEventListener("click", () => {
           openModal();
           createModal(indexRecipe);
         });
@@ -226,7 +237,7 @@ const showListFav = (categorie) => {
         const imgCard = document.createElement("img");
         imgCard.setAttribute("src", `../assets/img/${recipe.image}`);
         imgCard.classList.add("image-recipe");
-        card.appendChild(imgCard);
+        // card.appendChild(imgCard);
 
         // ajoute le titre et la catégorie
         const cardTitle = document.createElement("div");
@@ -236,7 +247,7 @@ const showListFav = (categorie) => {
           <h3>${recipe.nom}</h3>
           <p>${recipe.categorie}</p>
         `;
-        card.appendChild(cardTitle);
+        // card.appendChild(cardTitle);
 
         // boite pour les ingrédients
         const cardDesc = document.createElement("div");
@@ -247,15 +258,79 @@ const showListFav = (categorie) => {
           pIngredient.textContent = ingredient.nom;
           cardDesc.appendChild(pIngredient);
         });
-        card.appendChild(cardDesc);
+
+        const cardDescTwo = document.createElement("div");
+        cardDescTwo.classList.add("card-desc-two");
+        cardDescTwo.innerHTML = `
+        <img src="../assets/img/icon-cook.png" />
+        <p>Préparation: ${recipe.temps_preparation}</p>`;
+
+        // card.appendChild(cardDesc);
+
+        // ajoute les elements img / titre / desc a la sub card
+        subCard.appendChild(cardButton);
+        subCard.appendChild(imgCard);
+        subCard.appendChild(cardTitle);
+        subCard.appendChild(cardDescTwo);
+        subCard.appendChild(cardDesc);
+
+        card.appendChild(subCard);
 
         // Ajoute le footer
         const cardFooter = document.createElement("div");
         cardFooter.id = "card-footer";
-        cardFooter.innerHTML = `
-        <img src="../assets/img/icon-cook.png" />
-        <p>Préparation: ${recipe.temps_preparation}</p>`;
+        cardFooter.innerHTML = ` 
+        ${
+          exists
+            ? `
+          <h4>Retirer des recettes de la semaine?</h4>
+          <button id="remove-recipe-day" type="submit" class="button-action" action="remove" value="${indexRecipe}">
+              <img src="../assets/img/icon-remove.png" />
+          </button>`
+            : `
+          <h4>Ajouter aux recettes de la semaine?</h4>
+          <button id="add-recipe-day" type="submit" class="button-action" action="add" value="${indexRecipe}">
+              <img src="../assets/img/icon-add.png" />
+          </button>`
+        }
+        `;
+
         card.appendChild(cardFooter);
+
+        cardFooter.addEventListener("click", (e) => {
+          e.stopPropagation();
+        });
+
+        // évènement boutons
+        const buttonAction = cardFooter.querySelector(".button-action");
+        buttonAction.addEventListener("click", (e) => {
+          // e.stopPropagation();
+          const button = e.currentTarget;
+          const action = button.getAttribute("action");
+          const recipeIndex = button.getAttribute("value");
+          const titleButton = cardFooter.querySelector("h4");
+          console.log(titleButton);
+
+          if (action === "add") {
+            // ajoute la recette aux recettes de la semaine
+            recipesWeek.push(favoritesRecipes[recipeIndex]);
+            localStorage.setItem("recipes-week", JSON.stringify(recipesWeek));
+
+            // change le bouton en bouton supprimer
+            button.setAttribute("action", "remove");
+            button.innerHTML = `<img src="../assets/img/icon-remove.png" />`;
+            titleButton.textContent = "Retirer des recettes de la semaine?";
+          } else if (action === "remove") {
+            // supprime la recette aux recettes de la semaine
+            recipesWeek.splice(recipeIndex, 1);
+            localStorage.setItem("recipes-week", JSON.stringify(recipesWeek));
+
+            // change le bouton en bouton ajouter
+            button.setAttribute("action", "add");
+            button.innerHTML = `<img src="../assets/img/icon-add.png" />`;
+            titleButton.textContent = "Ajouter aux recettes de la semaine?";
+          }
+        });
 
         // Ajoute la carte au conteneur principal
         // card.appendChild(card);
@@ -263,6 +338,7 @@ const showListFav = (categorie) => {
       }
     });
   } else {
+    titlePage.style.display = "none";
     listFavBox.innerHTML = `
     <div class="empty-list">
       <h3 class="msg-info">Oops, on dirait bien que cette liste est vide</h3>

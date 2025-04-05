@@ -2,9 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="../assets/img/icon-fav.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="../assets/img/GLaPatate-detourer.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="../js/script.js" defer></script>
+    <!-- <script src="../js/script.js" defer></script> -->
+    <script src="../js/nav-bar.js" defer></script>
     <script src="../js/favoris.js" defer></script>
     <link rel="stylesheet" href="../style/reset.css" />
     <link rel="stylesheet" href="../style/header-footer.css" />
@@ -12,7 +16,7 @@
     <title>Favoris</title>
   </head>
   <body>
-    <header class="header-bar">
+    <header id="header-bar" class="header-bar">
       <div id="container-logo">
         <a href="../index.html">
           <img
@@ -33,15 +37,27 @@
             <li class="nav-bar-item">
               <a href="../pages/menu-semaine.html">Menu</a>
             </li>
-            <li class="nav-bar-item"><a href="#">Liste Courses</a></li>
+            <li class="nav-bar-item">
+              <a href="../pages/list.html">Liste Courses</a>
+            </li>
           </ul>
         </nav>
       </div>
+      <div id="burger" class="burger">
+        <img src="../assets/img/icon-burger.png" class="burger-logo" />
+      </div>
     </header>
     <main class="main-james">
+      <div id="title-favorite" class="title-favorite">
+        <h2>Pleine patate sur vos recettes préférées !</h2>
+        <p>Ajoute les recettes de ton choix à ton planning !</p>
+      </div>
       <div class="btn-select">
         <label for="categorie">Catégorie</label>
-        <select name="categorie" id="categorie" class="text-center"></select>
+        <select
+          name="categorie"
+          id="categorie"
+          class="select-favorite"></select>
       </div>
       <div id="listeFav" class="showBox">
         <!-- liste des menus favoris -->
@@ -55,6 +71,10 @@
       <div id="overlay" class="overlay-modal"></div>
       <div id="modal" class="modal scroller"></div>
     </main>
-    <footer><h6 class="copyrigth">&#169; BY Orkblan</h6></footer>
+    <footer>
+      <h6 class="copyrigth">
+        &#169; BY Orkblan <span class="small-james">and James</span>
+      </h6>
+    </footer>
   </body>
 </html>

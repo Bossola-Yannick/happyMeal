@@ -1,28 +1,33 @@
 allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
 
+const normalize = (search) => {
+  return search
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+};
+
 const search = (searchRecipe) => {
-  let resultName = allRecipe.filter((u) =>
-    u.nom.toLowerCase().includes(searchRecipe)
+  const searchNormalize = normalize(searchRecipe);
+  let result = allRecipe.filter((u) =>
+    normalize(u.nom).includes(searchNormalize)
   );
   let resultIngredients = allRecipe.filter((recipe) =>
     recipe.ingredients.some((ingredient) =>
-      ingredient.nom.toLowerCase().includes(searchRecipe)
+      normalize(ingredient.nom).includes(searchNormalize)
     )
   );
-  console.log(resultName);
+  result = result.concat(resultIngredients);
+  result = [...new Set(result)];
+  console.log(result);
   console.log(resultIngredients);
-  for (const element of resultName) {
+  for (const element of result) {
     let item = $("<p></p>").text(element.nom).attr({ class: "searchResult" });
     $("#resultSearch").append(item);
   }
-  for (const element of resultIngredients) {
-    let itemIngredient = $("<p></p>")
-      .text(element.nom)
-      .attr({ class: "searchResult" });
-    $("#resultSearch").append(itemIngredient);
-  }
-  if (allRecipe.length == resultName.length) {
+  if ($("#search").val() === "") {
     $("#resultSearch").empty();
+    randomRecipe();
     return;
   }
 };

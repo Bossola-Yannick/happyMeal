@@ -1,15 +1,17 @@
 // LOCAL STORAGE
 
 allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
-// // console.log(allRecipe);
-// let favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
-if (localStorage.getItem("favorite") !== null) {
-  favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
-} else {
-  favoritesRecipes = [];
-  localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));
-  favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
-}
+
+// console.log(allRecipe);
+let favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
+// if (localStorage.getItem("favorite") !== null) {
+//   favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
+// } else {
+//   favoritesRecipes = allRecipe.slice(3, 8);
+//   localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));
+//   favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
+// }
+
 
 let recipesWeek;
 
@@ -167,6 +169,7 @@ const showListFav = (categorie) => {
     listFavBox.innerHTML = "";
 
     favoritesRecipes.forEach((recipe) => {
+
       const exists = recipesWeek.some(
         (recipWeek) =>
           recipWeek.nom === recipe.nom &&

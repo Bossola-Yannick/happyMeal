@@ -1,10 +1,6 @@
-// génération données fictive
-recipes = JSON.parse(localStorage.getItem("favorite"));
-let shoppingList = [];
+// récupération de la liste de course
+let shoppingList = JSON.parse(localStorage.getItem("shopping-list"));
 let listOfIngredients = new Object();
-for (recipe of recipes) {
-  shoppingList.push(recipe.ingredients);
-}
 console.log(shoppingList);
 
 // mise en tableau des ingrédients

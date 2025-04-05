@@ -38,3 +38,10 @@ main {
   cursor: pointer;
   padding: 0.3rem;
 }
+
+/* Responsive */
+@media screen and (max-width: 900px) {
+  .search-bar {
+    width: 70%;
+  }
+}

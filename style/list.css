@@ -83,6 +83,7 @@ main {
   box-shadow: 1px 1px 0px 4px rgba(0, 0, 0, 0.15);
 }
 
+/* media pour le print */
 @media print {
   .header-bar,
   .title-list,
@@ -101,5 +102,27 @@ main {
   .list-item {
     width: 45%;
     font-size: 1rem;
+  }
+}
+
+/* Responsive */
+@media screen and (max-width: 500px) {
+  .sheet {
+    width: 90%;
+  }
+  .list-item {
+    width: 95%;
+  }
+  .buttonPrint,
+  .buttonDeletePrint {
+    margin: 1rem auto;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .sheet {
+    width: 90%;
+  }
+  .list-item {
+    width: 95%;
   }
 }

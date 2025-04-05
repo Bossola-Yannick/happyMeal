@@ -19,6 +19,8 @@
   transform-style: preserve-3d;
   transition: 1s;
 }
+
+/* face des cartes */
 .card-container-img {
   height: 10rem;
   width: 85%;
@@ -54,6 +56,18 @@
   background-color: rgba(152, 120, 204, 0.589);
 }
 
+/* dos des cartes */
+.ingredientTitle,
+.makingTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0.3rem;
+}
+.ingredientList {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
 /* gestion du retournement des cartes */
 .card-face {
   position: absolute;
@@ -82,4 +96,16 @@
 }
 .favorite-icon {
   max-width: 100%;
+}
+
+/* Responsive */
+@media screen and (max-width: 500px) {
+  .card {
+    width: 90%;
+  }
+}
+@media screen and (min-width: 500px) and (max-width: 1200px) {
+  .card {
+    width: 45%;
+  }
 }

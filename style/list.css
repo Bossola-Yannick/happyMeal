@@ -1,0 +1,128 @@
+body {
+  background-color: rgba(238, 231, 231, 0.589);
+}
+main {
+  min-height: 80vh;
+  text-align: center;
+}
+.title-list {
+  font-size: 2.5rem;
+  padding: 2rem;
+}
+.container-list {
+  display: flex;
+  justify-content: space-around;
+}
+.buttonPrint {
+  background-color: rgba(62, 129, 62, 0.705);
+  color: white;
+  font-weight: 600;
+  padding: 0.7rem;
+  border-radius: 2rem;
+  box-shadow: 1px 1px 0px 8px rgba(0, 0, 0, 0.15);
+  margin: 0 1rem 2rem 0;
+}
+.buttonPrint:active {
+  padding: 0.5rem;
+  border-radius: 1rem;
+  box-shadow: 1px 1px 0px 4px rgba(0, 0, 0, 0.15);
+}
+.sheet {
+  width: 50%;
+  margin: 2rem auto;
+  min-height: 50rem;
+  color: black;
+  background-color: rgba(241, 243, 245, 0.986);
+  -webkit-box-shadow: 1px 2px 6px 7px rgba(0, 0, 0, 0.4);
+  box-shadow: 1px 2px 6px 7px rgba(0, 0, 0, 0.4);
+}
+.sheet-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 1rem;
+}
+.list {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.list-item {
+  font-size: 1.5rem;
+  width: 45%;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 4rem;
+}
+.item-name {
+  text-align: start;
+  flex-grow: 1;
+}
+.delete-item {
+  cursor: pointer;
+  box-shadow: 1px 2px 6px 3px rgba(0, 0, 0, 0.4);
+  border-radius: 1rem;
+  padding: 0.1rem;
+}
+.delete-item:hover {
+  background-color: red;
+  box-shadow: 1px 2px 6px 3px rgba(199, 31, 31, 0.74);
+}
+.buttonDeletePrint {
+  background-color: rgba(235, 29, 29, 0.705);
+  color: white;
+  font-weight: 600;
+  padding: 0.7rem;
+  border-radius: 2rem;
+  box-shadow: 1px 1px 0px 8px rgba(0, 0, 0, 0.15);
+  margin: 0 0 2rem 1rem;
+}
+.buttonDeletePrint:active {
+  padding: 0.5rem;
+  border-radius: 1rem;
+  box-shadow: 1px 1px 0px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* media pour le print */
+@media print {
+  .header-bar,
+  .title-list,
+  .buttonPrint,
+  .buttonDeletePrint,
+  footer,
+  .delete-item {
+    display: none;
+  }
+  body {
+    background: none;
+  }
+  .sheet {
+    width: 70%;
+  }
+  .list-item {
+    width: 45%;
+    font-size: 1rem;
+  }
+}
+
+/* Responsive */
+@media screen and (max-width: 500px) {
+  .sheet {
+    width: 90%;
+  }
+  .list-item {
+    width: 95%;
+  }
+  .buttonPrint,
+  .buttonDeletePrint {
+    margin: 1rem auto;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .sheet {
+    width: 90%;
+  }
+  .list-item {
+    width: 95%;
+  }
+}

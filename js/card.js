@@ -57,16 +57,23 @@ const getRecipe = (recipe) => {
     .attr({ class: "card-time" });
   let cardFaceBack = $("<div></div>").attr({ class: "card-face card-back" });
   // gérer le tableau des ingrédient
+  let cardingedientTitle = $("<p></p>")
+    .text("Ingrédients :")
+    .attr({ class: "ingredientTitle" });
   let ingredientList = [];
   for (const ingredient of recipe.ingredients) {
     ingredientList.push(ingredient.nom);
   }
-  let cardIngredient = $("<p></p>")
-    .text(`Ingrédients : ${ingredientList}`)
-    .attr({});
+  let cardIngredient = $("<span></span>")
+    .text(ingredientList)
+    .attr({ class: "ingredientList" });
   // gestion des étapes de préparation
-  //
-  let cardPreparing = $("<div></div>").text("Préparation :").attr({});
+
+  let cardPreparing = $("<div></div>").attr({ class: "making" });
+  let cardTitleMaking = $("<h3></h3>")
+    .text("Préparation")
+    .attr({ class: "makingTitle" });
+  cardPreparing.append(cardTitleMaking);
   let numStage = 1;
   for (const etape of recipe.etapes) {
     let preparing = $("<p></p>").text(`${numStage} : ${etape}`);
@@ -83,7 +90,9 @@ const getRecipe = (recipe) => {
   cardFaceFront.append(cardTime);
   card.append(cardFaceBack);
   cardFaceBack.append(cardTitleBack);
-  cardFaceBack.append(cardIngredient);
+  cardingedientTitle.append(cardIngredient);
+  cardFaceBack.append(cardingedientTitle);
+
   cardFaceBack.append(cardPreparing);
 
   // insertion dans le DOM

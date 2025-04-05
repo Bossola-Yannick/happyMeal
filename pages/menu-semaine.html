@@ -2,20 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="../assets/img/icon-fav.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="../assets/img/GLaPatate-detourer.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://code.jquery.com/jquery-3.7.1.js" defer></script>
-    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js" defer></script>
-    <script src="../js/script.js" defer></script>
+    <!-- <script src="../js/script.js" defer></script> -->
+    <script src="../js/nav-bar.js" defer></script>
     <script src="../js/modal-planning.js" defer></script>
-    <script src="../js/menu-semaine.js" defer></script>
+    <script src="../js/menu.js" defer></script>
+    <!-- <script src="../js/menu-semaine-select.js" defer></script> -->
+    <!-- <script src="../js/menu-semaine.js" defer></script> -->
     <link rel="stylesheet" href="../style/reset.css" />
     <link rel="stylesheet" href="../style/header-footer.css" />
     <link rel="stylesheet" href="../style/styleJames.css" />
     <title>Menu semaine</title>
   </head>
   <body>
-    <header class="header-bar">
+    <header id="header-bar" class="header-bar">
       <div id="container-logo">
         <a href="../index.html">
           <img
@@ -38,13 +42,19 @@
               <a href="../pages/menu-semaine.html">Menu</a>
             </li>
             <li class="nav-bar-item">
-              <a href="./list.html">Liste Courses</a>
+              <a href="../pages/list.html">Liste Courses</a>
             </li>
           </ul>
         </nav>
       </div>
+      <div id="burger" class="burger">
+        <img src="../assets/img/icon-burger.png" class="burger-logo" />
+      </div>
     </header>
     <main class="main-james">
+      <div id="title-favorite" class="title-favorite">
+        <h2>Mettez du gratin dans votre semaine</h2>
+      </div>
       <div class="buttons-planning">
         <button
           id="get-shopping-list"
@@ -62,14 +72,28 @@
           </button>
         </div>
       </div>
-      <hr class="separator" />
+      <div class="object-page">
+        <p id="infoMsg" class="infoMsg"></p>
+        <hr class="separator" />
+      </div>
+
       <div id="container-fav-list" class="box-all-favorite">
         <ul id="list-recipe-box" class="list-fav"></ul>
       </div>
       <div id="week-day-container" class="week-day-container"></div>
       <div id="overlay" class="overlay-modal"></div>
       <div id="modal" class="modal scroller"></div>
+      <div id="bottom-button" class="bottom-button">
+        <button
+          id="button-top-scroll"
+          name="button-top-scroll"
+          class="button-top-scroll"></button>
+      </div>
     </main>
-    <footer><h6 class="copyrigth">&#169; BY Orkblan</h6></footer>
+    <footer>
+      <h6 class="copyrigth">
+        &#169; BY Orkblan <span class="small-james">and James</span>
+      </h6>
+    </footer>
   </body>
 </html>

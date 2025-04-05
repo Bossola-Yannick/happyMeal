@@ -12,6 +12,26 @@ if (localStorage.getItem("recipes-week") !== null) {
 
 // elements DOM
 const dataBoxes = document.getElementsByClassName("drop-recipe");
+const infoMsg = document.getElementById("infoMsg");
+
+// bouton bas de page pour scroll to top
+const noFitAll = window.matchMedia("(max-width: 1340px)");
+const buttonBottom = document.getElementById("bottom-button");
+
+console.log(noFitAll.matches);
+
+if (noFitAll.matches) {
+  buttonBottom.style.display = "flex";
+  buttonBottom.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  });
+} else {
+  buttonBottom.style.display = "none";
+}
 
 // affiche planning
 const showPlanning = () => {
@@ -84,6 +104,16 @@ const recipeTag = () => {
     const recipeTag = document.createElement("li");
     recipeTag.classList.add("tag-recipe", "recipe");
     recipeTag.setAttribute("draggable", "true");
+
+    //couleur bg cards selon categorie
+    if (recipe.categorie === "Entrée") {
+      recipeTag.classList.add("starter");
+    } else if (recipe.categorie === "Plat principal") {
+      recipeTag.classList.add("dish");
+    } else if (recipe.categorie === "Dessert") {
+      recipeTag.classList.add("dessert");
+    }
+
     recipeTag.innerText = recipe.nom;
     recipeBox.appendChild(recipeTag);
   });
@@ -163,6 +193,15 @@ const generateShoppingList = () => {
 const getShoppingList = document.getElementById("get-shopping-list");
 getShoppingList.addEventListener("click", () => {
   generateShoppingList();
+
+  if (JSON.parse(localStorage.getItem("shopping-list")).length > 0) {
+    infoMsg.classList.add("blueMsg");
+    infoMsg.innerHTML = "Liste de course généré !";
+    setTimeout(() => {
+      infoMsg.innerHTML = "";
+      infoMsg.classList.remove("blueMsg");
+    }, 700);
+  }
 });
 
 // sauvegarder menu semaine
@@ -213,6 +252,7 @@ const fillPlanning = () => {
             index = allRecipe.indexOf(recipe);
           }
         });
+        window.scrollTo(0, 0);
         openModal();
         createModal(index);
       });
@@ -239,8 +279,21 @@ const buttonSave = document.getElementById("save-planning");
 buttonSave.addEventListener("click", (e) => {
   savePlanningWeek();
   fillPlanning();
+
+  const savedPlanning = JSON.parse(localStorage.getItem("saved-planning"));
+  const recipeIn = savedPlanning.some((recipe) => recipe !== null);
+
+  if (recipeIn) {
+    infoMsg.classList.add("greenMsg");
+    infoMsg.innerHTML = "Planning sauvegardé !";
+    setTimeout(() => {
+      infoMsg.innerHTML = "";
+      infoMsg.classList.remove("greenMsg");
+    }, 700);
+  }
 });
 
+// rempli planning si sauvegarde
 if (localStorage.getItem("saved-planning") !== null) {
   fillPlanning();
 }
@@ -254,3 +307,42 @@ buttonReset.addEventListener("click", () => {
     box.innerHTML = "";
   }
 });
+
+// evenement scroll
+const scrollEvent = () => {
+  const favList = document.getElementById("container-fav-list");
+  const planning = document.getElementById("week-day-container");
+  const tags = document.getElementsByClassName("tag-recipe");
+
+  const positionList = favList.getBoundingClientRect();
+
+  const containerHeight = favList.offsetHeight;
+
+  document.addEventListener("scroll", (e) => {
+    const scrolledValue = window.scrollY;
+
+    // console.log(containerHeight);
+    // console.log(scrolledValue);
+
+    if (scrolledValue > positionList.y) {
+      // container liste
+      favList.style.backgroundColor = "#F5F1F1d2";
+      favList.style.position = "fixed";
+      favList.style.top = "0";
+      favList.style.zIndex = "15";
+
+      // planning decallage
+      planning.style.transition = "none";
+      planning.style.marginTop = `${containerHeight + 16}px`;
+    } else {
+      favList.style.backgroundColor = "transparent";
+      favList.style.position = "static";
+      favList.style.zIndex = "0";
+      favList.style.transition = "position 0.6ms ease-in-out";
+
+      planning.style.marginTop = "0";
+    }
+  });
+};
+
+scrollEvent();

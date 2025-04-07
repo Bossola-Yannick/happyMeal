@@ -4,14 +4,13 @@ allRecipe = JSON.parse(localStorage.getItem("all-recipe"));
 
 // console.log(allRecipe);
 let favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
-// if (localStorage.getItem("favorite") !== null) {
-//   favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
-// } else {
-//   favoritesRecipes = allRecipe.slice(3, 8);
-//   localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));
-//   favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
-// }
-
+if (localStorage.getItem("favorite") !== null) {
+  favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
+} else {
+  favoritesRecipes = [];
+  localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));
+  favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
+}
 
 let recipesWeek;
 
@@ -75,12 +74,6 @@ const createModal = (index) => {
     if (favoritesRecipes.indexOf(recette) === index) {
       recipeModal = recette;
 
-      const exists = recipesWeek.some(
-        (recipe) =>
-          recipe.nom === recipeModal.nom &&
-          recipe.categorie === recipeModal.categorie
-      );
-
       modalBox.innerHTML += `
         <img src="../assets/img/${recette.image}" class="img-modal"/>
         <div class="modal-header">
@@ -108,48 +101,10 @@ const createModal = (index) => {
             ${recette.etapes.map((etape) => `<li>${etape}</li>`).join("")}
             </ol>
           </div>
-        </div>
-        ${
-          exists
-            ? `
-        <div id="button-remove-footer" class="modal-footer-remove">
-          <h4>Retirer des recettes de la semaine?</h4>
-          <button id="remove-recipe-day" type="submit" class="button-remove">
-              <img src="../assets/img/icon-remove.png" />
-          </button>
-        </div>`
-            : `<div id="button-add-footer" class="modal-footer-add">
-          <h4>Ajouter aux recettes de la semaine?</h4>
-          <button id="add-recipe-day" type="submit" class="button-add">
-              <img src="../assets/img/icon-add.png" />
-          </button>
-        </div>`
-        }
-        
+        </div>       
       `;
     }
   });
-
-  // ajouter un plat a la liste de la semaine
-  const addRecipeDay = document.getElementById("add-recipe-day");
-  if (addRecipeDay) {
-    addRecipeDay.addEventListener("click", () => {
-      recipesWeek.push(recipeModal);
-      localStorage.setItem("recipes-week", JSON.stringify(recipesWeek));
-      createModal(index);
-    });
-  }
-
-  // retirer un plat a la liste de la semaine
-  const removeRecipeDay = document.getElementById("button-remove-footer");
-  if (removeRecipeDay) {
-    removeRecipeDay.addEventListener("click", () => {
-      const indexRecipe = recipesWeek.indexOf(recipeModal);
-      recipesWeek.splice(indexRecipe, 1);
-      localStorage.setItem("recipes-week", JSON.stringify(recipesWeek));
-      createModal(index);
-    });
-  }
 
   // event fermeture modale
   const modalClose = document.getElementById("modal-close");
@@ -169,7 +124,6 @@ const showListFav = (categorie) => {
     listFavBox.innerHTML = "";
 
     favoritesRecipes.forEach((recipe) => {
-
       const exists = recipesWeek.some(
         (recipWeek) =>
           recipWeek.nom === recipe.nom &&
@@ -287,12 +241,12 @@ const showListFav = (categorie) => {
           exists
             ? `
           <h4>Retirer des recettes de la semaine?</h4>
-          <button id="remove-recipe-day" type="submit" class="button-action" action="remove" value="${indexRecipe}">
+          <button id="remove-recipe-day" type="submit" class="button-action" action="remove" value="${recipe.nom}">
               <img src="../assets/img/icon-remove.png" />
           </button>`
             : `
           <h4>Ajouter aux recettes de la semaine?</h4>
-          <button id="add-recipe-day" type="submit" class="button-action" action="add" value="${indexRecipe}">
+          <button id="add-recipe-day" type="submit" class="button-action" action="add" value="${recipe.nom}">
               <img src="../assets/img/icon-add.png" />
           </button>`
         }
@@ -310,13 +264,18 @@ const showListFav = (categorie) => {
           // e.stopPropagation();
           const button = e.currentTarget;
           const action = button.getAttribute("action");
-          const recipeIndex = button.getAttribute("value");
+          const recipeName = button.getAttribute("value");
+          const recipeInfo = favoritesRecipes.find(
+            (element) => element.nom === recipeName
+          );
+          const recipeIndex = recipesWeek.findIndex(
+            (recipe) => recipe.nom === recipeName
+          );
           const titleButton = cardFooter.querySelector("h4");
-          console.log(titleButton);
 
           if (action === "add") {
             // ajoute la recette aux recettes de la semaine
-            recipesWeek.push(favoritesRecipes[recipeIndex]);
+            recipesWeek.push(recipeInfo);
             localStorage.setItem("recipes-week", JSON.stringify(recipesWeek));
 
             // change le bouton en bouton supprimer

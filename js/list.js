@@ -57,4 +57,7 @@ $("body").on("click", ".buttonPrint", function () {
 // suppression de la liste
 $("body").on("click", ".buttonDeletePrint", function () {
   $(".list-item").remove();
+  shoppingList = JSON.parse(localStorage.getItem("shopping-list"));
+  shoppingList = [];
+  localStorage.setItem("shopping-list", JSON.stringify(shoppingList));
 });

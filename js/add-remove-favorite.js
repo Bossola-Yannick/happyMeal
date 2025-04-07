@@ -32,6 +32,7 @@ $("body").on("click", ".favorite-icon", function (e) {
     let favRecipes = JSON.parse(localStorage.getItem("favorite")) || [];
     favRecipes = favRecipes.filter((u) => u.nom.toLowerCase() !== recipeName);
     localStorage.setItem("favorite", JSON.stringify(favRecipes));
+    localStorage.setItem("recipes-week", JSON.stringify(favRecipes));
     // suppresion des favoris de la recette dans allRecipe apres récupération de l'index de celle-ci
     let index = allRecipe.findIndex((u) => u.nom.toLowerCase() === recipeName);
     delete allRecipe[index].favorite;

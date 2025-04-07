@@ -12,7 +12,6 @@ let favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
 //   favoritesRecipes = JSON.parse(localStorage.getItem("favorite"));
 // }
 
-
 let recipesWeek;
 
 if (localStorage.getItem("recipes-week") !== null) {
@@ -169,7 +168,6 @@ const showListFav = (categorie) => {
     listFavBox.innerHTML = "";
 
     favoritesRecipes.forEach((recipe) => {
-
       const exists = recipesWeek.some(
         (recipWeek) =>
           recipWeek.nom === recipe.nom &&
@@ -225,6 +223,9 @@ const showListFav = (categorie) => {
           selectOption();
           showListFav("Liste entière");
           localStorage.setItem("favorite", JSON.stringify(favoritesRecipes));
+          // supprime la recette aux recettes de la semaine
+          recipesWeek.splice(indexRecipe, 1);
+          localStorage.setItem("recipes-week", JSON.stringify(recipesWeek));
         });
 
         cardButton.appendChild(buttonFav);
